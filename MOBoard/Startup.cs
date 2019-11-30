@@ -1,12 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MOBoard.Common.Dispatchers;
 
-namespace MOBoard
+namespace MOBoard.Web
 {
     public class Startup
     {
@@ -70,6 +76,38 @@ namespace MOBoard
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+
+        private IServiceProvider ConfigureIocContainer(IServiceCollection services)
+        {
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+
+            RegisterAllTypesByConvention(builder);
+
+            builder.AddDispatchers();
+
+            var container = builder.Build();
+            return new AutofacServiceProvider(container);
+        }
+
+        private void RegisterAllTypesByConvention(ContainerBuilder builder)
+        {
+            var startupAssembly = GetType().Assembly;
+
+            var referencedAssemblyNames = startupAssembly.GetReferencedAssemblies().Where(name =>
+                new[]
+                {
+                    "MOBoard"
+                }.Any(projectNamespacePart => name.FullName.StartsWith(projectNamespacePart)));
+            var assemblyNames = new List<AssemblyName> { startupAssembly.GetName() };
+            assemblyNames.AddRange(referencedAssemblyNames);
+
+            foreach (var referencedAssemblyName in assemblyNames)
+            {
+                builder.RegisterAssemblyTypes(Assembly.Load(referencedAssemblyName)).AsSelf();
+                builder.RegisterAssemblyTypes(Assembly.Load(referencedAssemblyName)).AsImplementedInterfaces();
+            }
         }
     }
 }
