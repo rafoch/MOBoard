@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBoard.Web", "MOBoard\MOBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBoard.Common", "MOBoard.Common\MOBoard.Common.csproj", "{BE1837BC-DBA6-4AAD-B215-C222D2BA7583}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBoard.Issues.Read", "MOBoard.Issues.Read\MOBoard.Issues.Read.csproj", "{A28A7D0F-B1AC-4A31-B102-57BFC747A300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBoard.Issues.Write", "MOBoard.Issues.Write\MOBoard.Issues.Write.csproj", "{B312060F-9F1C-477D-8EBF-BFE11F88F46B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{BE1837BC-DBA6-4AAD-B215-C222D2BA7583}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE1837BC-DBA6-4AAD-B215-C222D2BA7583}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE1837BC-DBA6-4AAD-B215-C222D2BA7583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A28A7D0F-B1AC-4A31-B102-57BFC747A300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A28A7D0F-B1AC-4A31-B102-57BFC747A300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A28A7D0F-B1AC-4A31-B102-57BFC747A300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A28A7D0F-B1AC-4A31-B102-57BFC747A300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B312060F-9F1C-477D-8EBF-BFE11F88F46B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B312060F-9F1C-477D-8EBF-BFE11F88F46B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B312060F-9F1C-477D-8EBF-BFE11F88F46B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B312060F-9F1C-477D-8EBF-BFE11F88F46B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
