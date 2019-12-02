@@ -150,6 +150,8 @@ namespace MOBoard.Web
                 services.ConfigureWriteContext<AuthUserWriteContext>(Configuration);
                 services.ConfigureReadonlyContext<AuthUserReadonlyContext>(Configuration);
             }
+            {
+            }
         }
     }
 }
