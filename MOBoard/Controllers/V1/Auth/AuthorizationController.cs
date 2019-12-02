@@ -1,14 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MOBoard.Auth.Users.Write.Commands;
 using MOBoard.Auth.Users.Write.Domain;
 using MOBoard.Common.Contractors.V1;
 using MOBoard.Common.Contractors.V1.OAuth;
 using MOBoard.Common.Dispatchers;
 using MOBoard.Web.Controllers.Base;
 
-namespace MOBoard.Web.Controllers.V1
+namespace MOBoard.Web.Controllers.V1.Auth
 {
     public class AuthorizationController : BaseController
     {

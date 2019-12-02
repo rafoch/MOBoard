@@ -8,6 +8,8 @@ using MOBoard.Common.Types;
 namespace MOBoard.Web.Controllers.Base
 {
     [ApiController]
+    [Produces("application/json")]
+    [Consumes("application/json")]
     public class BaseController : ControllerBase
     {
         private readonly IDispatcher _dispatcher;
