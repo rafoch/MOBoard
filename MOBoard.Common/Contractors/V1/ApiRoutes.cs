@@ -17,6 +17,7 @@
         {
             private const string AuthBase = BaseRoute.Index + "/oauth/";
             public const string Login = AuthBase + "login";
+            public const string Register = AuthBase + "register";
         }
     }
 }

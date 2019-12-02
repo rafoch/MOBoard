@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 
-namespace MOBoard.Auth.Users.Write.Domain
+namespace MOBoard.Auth.Users.Read.Domain
 {
     public class ApplicationUser : IdentityUser<Guid>
     {

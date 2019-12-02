@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MOBoard.Auth.Users.Write.Domain;
 
 namespace MOBoard.Auth.Users.Write.DataAccess
 {
-    public class AuthUserWriteContext : IdentityDbContext<ApplicationUser>
+    public class AuthUserWriteContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public AuthUserWriteContext(DbContextOptions<AuthUserWriteContext> options) : base(options)
         {

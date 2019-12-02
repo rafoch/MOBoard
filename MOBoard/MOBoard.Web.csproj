@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.2.2" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
@@ -35,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MOBoard.Auth.Users.Read\MOBoard.Auth.Users.Read.csproj" />
     <ProjectReference Include="..\MOBoard.Auth.Users.Write\MOBoard.Auth.Users.Write.csproj" />
     <ProjectReference Include="..\MOBoard.Common\MOBoard.Common.csproj" />
     <ProjectReference Include="..\MOBoard.Issues.Read\MOBoard.Issues.Read.csproj" />

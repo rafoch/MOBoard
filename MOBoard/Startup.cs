@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MOBoard.Auth.Users.Read.DataAccess;
 using MOBoard.Auth.Users.Write.DataAccess;
 using MOBoard.Auth.Users.Write.Domain;
 using MOBoard.Common.Dispatchers;
@@ -147,6 +148,7 @@ namespace MOBoard.Web
             }
             {
                 services.ConfigureWriteContext<AuthUserWriteContext>(Configuration);
+                services.ConfigureReadonlyContext<AuthUserReadonlyContext>(Configuration);
             }
         }
     }
