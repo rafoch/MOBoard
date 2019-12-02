@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using MOBoard.Common.Dispatchers;
 using MOBoard.Issues.Write.DataAccess;
 using MOBoard.Issues.Read.DataAccess;
@@ -33,6 +34,14 @@ namespace MOBoard.Web
             // In production, the Angular files will be served from this directory
             ConfigureDatabases(services);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "MOBoard",
+                    Version = "V1"
+                });
+            });
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -71,18 +80,24 @@ namespace MOBoard.Web
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MOBoard");
             });
+
+//            app.UseSpa(spa =>
+//            {
+//                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+//                // see https://go.microsoft.com/fwlink/?linkid=864501
+//
+//                spa.Options.SourcePath = "ClientApp";
+//
+//                if (env.IsDevelopment())
+//                {
+//                    spa.UseAngularCliServer(npmScript: "start");
+//                }
+//            });
         }
 
         private IServiceProvider ConfigureIocContainer(IServiceCollection services)
