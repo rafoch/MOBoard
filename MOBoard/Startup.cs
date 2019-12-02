@@ -6,11 +6,11 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MOBoard.Auth.Users.Write.DataAccess;
 using MOBoard.Common.Dispatchers;
 using MOBoard.Issues.Write.DataAccess;
 using MOBoard.Issues.Read.DataAccess;
@@ -137,6 +137,9 @@ namespace MOBoard.Web
             {
                 services.ConfigureWriteContext<IssueWriteContext>(Configuration);
                 services.ConfigureReadonlyContext<IssueReadonlyContext>(Configuration);
+            }
+            {
+                services.ConfigureWriteContext<AuthUserWriteContext>(Configuration);
             }
         }
     }
