@@ -41,15 +41,7 @@ namespace MOBoard.Web
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("Moraliadsaotjzset")),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                RequireExpirationTime = false,
-                ValidateLifetime = true
-            };
+            var tokenValidationParameters = TokenValidationParametersProvider.Get();
 
             services.AddSingleton(tokenValidationParameters);
             services.AddAuthentication(x =>
