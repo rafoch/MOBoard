@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
+using JetBrains.Annotations;
 using MOBoard.Auth.Users.Write.DataAccess;
 using MOBoard.Auth.Users.Write.Domain;
 using MOBoard.Common.Dispatchers;
 
 namespace MOBoard.Auth.Users.Write.Commands
 {
+    [UsedImplicitly]
     public class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand>
     {
         private readonly AuthUserWriteContext _context;

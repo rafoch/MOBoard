@@ -2,22 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MOBoard.Auth.Users.Read.DataAccess;
 using MOBoard.Auth.Users.Write.DataAccess;
 using MOBoard.Auth.Users.Write.Domain;
 using MOBoard.Common.Dispatchers;
+using MOBoard.Common.Types;
 using MOBoard.Issues.Write.DataAccess;
 using MOBoard.Issues.Read.DataAccess;
 using MOBoard.Web.Extensions;
+using MOBoard.Web.Filters;
 
 namespace MOBoard.Web
 {
@@ -33,7 +40,38 @@ namespace MOBoard.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddMvc(options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("Moraliadsaotjzset")),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                RequireExpirationTime = false,
+                ValidateLifetime = true
+            };
+
+            services.AddSingleton(tokenValidationParameters);
+            services.AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = tokenValidationParameters;
+                });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("MustWorkOnMOBoard", policy =>
+                {
+                    policy.AddRequirements(new MOBoardRequriement("MOBoard"));
+                });
+            });
+
             // In production, the Angular files will be served from this directory
             ConfigureDatabases(services);
 
@@ -44,6 +82,27 @@ namespace MOBoard.Web
                     Title = "MOBoard",
                     Version = "V1"
                 });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the bearer scheme",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Id = "Bearer",
+                            Type = ReferenceType.SecurityScheme
+                        }
+                    },  new List<string>()}
+                });
+
             });
             services.AddSpaStaticFiles(configuration =>
             {
@@ -66,7 +125,13 @@ namespace MOBoard.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+            app.UseWebSockets();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -138,9 +203,9 @@ namespace MOBoard.Web
         private void ConfigureDatabases(IServiceCollection services)
         {
             {
-                services.AddIdentityCore<ApplicationUser>()
-                    .AddEntityFrameworkStores<AuthUserWriteContext>()
-                    .AddDefaultTokenProviders();
+                services.AddIdentity<ApplicationUser, ApplicationRole>()
+                    .AddRoles<ApplicationRole>()
+                    .AddEntityFrameworkStores<AuthUserWriteContext>();
             }
             {
                 services.ConfigureWriteContext<IssueWriteContext>(Configuration);

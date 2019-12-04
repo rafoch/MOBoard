@@ -5,7 +5,7 @@ namespace MOBoard.Auth.Users.Write.Domain
 {
     public class RefreshToken : AggregateRoot
     {
-        public string Token { get; set; }
+        public string Token { get; set; } = Guid.NewGuid().ToString();
         public string JwtId { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ExpireDate { get; set; }
