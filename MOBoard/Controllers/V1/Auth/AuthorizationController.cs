@@ -46,7 +46,7 @@ namespace MOBoard.Web.Controllers.V1.Auth
                 }
             }
 
-            return BadRequest();
+            return NotFound();
         }
 
         [HttpPost(ApiRoutes.Authorization.Register)]
@@ -60,10 +60,15 @@ namespace MOBoard.Web.Controllers.V1.Auth
             var identityResult = await _userManager.CreateAsync(applicationUser, registerRequest.Password);
             if (identityResult.Succeeded)
             {
-
+                var user = await _userManager.FindByNameAsync(registerRequest.UserName);
+                var sendAsyncWithResult = await SendAsyncWithResult<LoginUserCommand, TokenResult>(new LoginUserCommand(user));
+                if (sendAsyncWithResult.Success)
+                {
+                    return Ok(sendAsyncWithResult);
+                }
             }
 
-            return Ok();
+            return NotFound();
         }
     }
 

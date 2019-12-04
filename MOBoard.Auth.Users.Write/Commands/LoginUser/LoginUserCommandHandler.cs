@@ -79,7 +79,7 @@ namespace MOBoard.Auth.Users.Write.Commands.LoginUser
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             var user = await _authUserWriteContext.Users.Where(u => u.Id == command.ApplicationUser.Id).FirstOrDefaultAsync();
-            var refreshToken = new RefreshToken
+            var refreshToken = new Domain.RefreshToken
             {
                 JwtId = token.Id,
                 ApplicationUser = user,
@@ -88,7 +88,7 @@ namespace MOBoard.Auth.Users.Write.Commands.LoginUser
             };
             if (user.Tokens == null)
             {
-                user.Tokens = new HashSet<RefreshToken>();
+                user.Tokens = new HashSet<Domain.RefreshToken>();
             }
             user.Tokens.Add(refreshToken);
             await _authUserWriteContext.SaveChangesAsync();
