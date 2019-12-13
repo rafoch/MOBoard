@@ -43,6 +43,8 @@
   <ItemGroup>
     <ProjectReference Include="..\MOBoard.Auth.Users.Read\MOBoard.Auth.Users.Read.csproj" />
     <ProjectReference Include="..\MOBoard.Auth.Users.Write\MOBoard.Auth.Users.Write.csproj" />
+    <ProjectReference Include="..\MOBoard.Board.Read\MOBoard.Board.Read.csproj" />
+    <ProjectReference Include="..\MOBoard.Board.Write\MOBoard.Board.Write.csproj" />
     <ProjectReference Include="..\MOBoard.Common\MOBoard.Common.csproj" />
     <ProjectReference Include="..\MOBoard.Issues.Read\MOBoard.Issues.Read.csproj" />
     <ProjectReference Include="..\MOBoard.Issues.Write\MOBoard.Issues.Write.csproj" />

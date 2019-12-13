@@ -4,7 +4,7 @@ using MOBoard.Auth.Users.Write.DataAccess;
 using MOBoard.Auth.Users.Write.Domain;
 using MOBoard.Common.Dispatchers;
 
-namespace MOBoard.Auth.Users.Write.Commands
+namespace MOBoard.Auth.Users.Write.Commands.RegisterUser
 {
     [UsedImplicitly]
     public class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand>

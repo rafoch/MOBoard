@@ -2,29 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MOBoard.Auth.Users.Read.DataAccess;
 using MOBoard.Auth.Users.Write.DataAccess;
 using MOBoard.Auth.Users.Write.Domain;
+using MOBoard.Board.Read.DataAccess;
 using MOBoard.Common.Dispatchers;
 using MOBoard.Common.Types;
 using MOBoard.Issues.Write.DataAccess;
 using MOBoard.Issues.Read.DataAccess;
 using MOBoard.Web.Extensions;
 using MOBoard.Web.Filters;
+using MOBoard.Board.Write.DataAccess;
 
 namespace MOBoard.Web
 {
@@ -123,7 +121,6 @@ namespace MOBoard.Web
                 .AllowAnyMethod());
             app.UseWebSockets();
             app.UseAuthentication();
-            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -132,7 +129,7 @@ namespace MOBoard.Web
             }
 
             app.UseRouting();
-
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -208,6 +205,8 @@ namespace MOBoard.Web
                 services.ConfigureReadonlyContext<AuthUserReadonlyContext>(Configuration);
             }
             {
+                services.ConfigureWriteContext<BoardWriteContext>(Configuration);
+                services.ConfigureReadonlyContext<BoardReadonlyContext>(Configuration);
             }
         }
     }
