@@ -22,7 +22,23 @@ namespace MOBoard.Issues.Read.Query
 
         public async Task<IList<IssueDto>> HandleAsync(GetIssuesQuery query)
         {
-            return await _context.Issues.Select(x => new IssueDto {Name = x.Name}).ToListAsync();
+            return await _context.Issues
+            .Select(x => new IssueDto
+            {
+                Name = x.Name,
+                CreatedAt = x.CreatedAt,
+                ModifiedAt = x.ModifiedAt,
+                CreatorUserId = x.CreatorId,
+                IssueHistories = x.IssueHistories
+                    .Where(ih => ih.RemovedAt == null)
+                    .OrderByDescending(ih => ih.CreatedAt)
+                    .Select(ih => new IssueHistoryDto
+                    {
+                        CreatedAt = ih.CreatedAt,
+                        ChangeUserId = ih.UserId,
+                        ActionType = ih.ActionType.ToString()
+                    })
+            }).ToListAsync();
         }
     }
 }

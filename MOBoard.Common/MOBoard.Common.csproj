@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="States\" />
+  </ItemGroup>
+
 </Project>

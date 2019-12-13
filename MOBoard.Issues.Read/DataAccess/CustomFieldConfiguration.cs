@@ -12,7 +12,9 @@ namespace MOBoard.Issues.Read.DataAccess
 
 
             modelBuilder.Property(i => i.DueDate).HasColumnType("Date");
-            
+
+            modelBuilder.HasMany(i => i.IssueHistories).WithOne(ih => ih.Issue);
+
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using MOBoard.Common.Types;
+using MOBoard.Issues.Write.Domain.OperationState;
 
 namespace MOBoard.Issues.Write.Domain
 {
@@ -27,6 +29,7 @@ namespace MOBoard.Issues.Write.Domain
             CreatorId = creatorId;
             Description = description;
             IssueHistories = _issueHistories;
+            AssignState = new UnassignPersonPersonAssignmentState();
             IssueHistories.Add(new IssueHistory(creatorId, ActionType.Created));
         }
 
@@ -40,24 +43,24 @@ namespace MOBoard.Issues.Write.Domain
         public DateTime? DueDate { get; private set; }
         public Guid CreatorId { get; private set; }
         public string Description { get; private set; }
-        public ISet<IssueHistory> IssueHistories { get; set; }
-    }
+        public Guid? AssignedPersonId { get; set; }
+        public ISet<IssueHistory> IssueHistories { get; private set; }
+        [NotMapped]
+        public PersonAssignmentState AssignState { get; set; }
 
-    public class IssueHistory : AggregateRoot
-    {
-        public IssueHistory(Guid userId, ActionType actionType)
+        public void ChangeAssignState(Guid changeUserId)
         {
-            UserId = userId;
-            ActionType = actionType;
+            if (AssignedPersonId == null)
+            {
+                AssignState = new UnassignPersonPersonAssignmentState();
+            }
+            else
+            {
+                AssignState = new AssignPersonPersonAssignmentState();
+            }
+            AssignState.Handle(this, changeUserId);
+            ModifiedAt = DateTime.Now;
+            AssignedPersonId = changeUserId;
         }
-
-        public Guid UserId { get; private set; }
-        public ActionType ActionType { get; private set; }
-        public Issue Issue { get; set; }
-    }
-
-    public enum ActionType
-    {
-        Created, Moved, Updated, Removed, WorkLog, Assign, Unassigned, 
     }
 }

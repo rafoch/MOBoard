@@ -25,6 +25,7 @@
             private const string IssueBase = BaseRoute.Index + "/issue/";
             public const string Create = IssueBase + "create";
             public const string All = IssueBase + "all";
+            public const string Assignment = IssueBase + "assignment";
         }
     }
 }

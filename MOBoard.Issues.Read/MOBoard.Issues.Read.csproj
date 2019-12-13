@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MOBoard.Common\MOBoard.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handler\" />
+  </ItemGroup>
+
 </Project>

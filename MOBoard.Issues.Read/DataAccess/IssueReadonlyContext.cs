@@ -15,5 +15,6 @@ namespace MOBoard.Issues.Read.DataAccess
         }
 
         public DbSet<Issue> Issues { get; set; }
+        public DbSet<IssueHistory> IssueHistories { get; set; }
     }
 }

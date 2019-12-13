@@ -25,6 +25,12 @@ namespace MOBoard.Issues.Write.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AssignedPersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("CreatorId")
                         .HasColumnType("uniqueidentifier");
 
@@ -34,9 +40,15 @@ namespace MOBoard.Issues.Write.Migrations
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("Date");
 
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RemovedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -52,8 +64,17 @@ namespace MOBoard.Issues.Write.Migrations
                     b.Property<int>("ActionType")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("IssueId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RemovedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -62,7 +83,7 @@ namespace MOBoard.Issues.Write.Migrations
 
                     b.HasIndex("IssueId");
 
-                    b.ToTable("IssueHistory");
+                    b.ToTable("IssueHistories");
                 });
 
             modelBuilder.Entity("MOBoard.Issues.Write.Domain.IssueHistory", b =>
