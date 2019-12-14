@@ -11,6 +11,8 @@ namespace MOBoard.Common.Contractors.V1.Issue
         public Guid CreatorUserId { get; set; }
         public DateTime ModifiedAt { get; set; }
         public IEnumerable<IssueHistoryDto> IssueHistories { get; set; }
+        public int IssueNumber { get; set; }
+        public string IssueFullNumber { get; set; }
     }
 
     public class IssueHistoryDto

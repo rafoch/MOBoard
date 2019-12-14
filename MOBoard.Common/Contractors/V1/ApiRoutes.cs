@@ -27,5 +27,11 @@
             public const string All = IssueBase + "all";
             public const string Assignment = IssueBase + "assignment";
         }
+
+        public static class Project
+        {
+            private const string ProjectBase = BaseRoute.Index + "/project/";
+            public const string Create = ProjectBase + "create";
+        }
     }
 }

@@ -23,12 +23,15 @@ namespace MOBoard.Issues.Read.Query
         public async Task<IList<IssueDto>> HandleAsync(GetIssuesQuery query)
         {
             return await _context.Issues
+                .Where(i => i.RemovedAt == null && i.ProjectId == query.ProjectId)
             .Select(x => new IssueDto
             {
                 Name = x.Name,
                 CreatedAt = x.CreatedAt,
                 ModifiedAt = x.ModifiedAt,
                 CreatorUserId = x.CreatorId,
+                IssueNumber = x.IssueNumber,
+                IssueFullNumber = x.IssueFullNumber,
                 IssueHistories = x.IssueHistories
                     .Where(ih => ih.RemovedAt == null)
                     .OrderByDescending(ih => ih.CreatedAt)

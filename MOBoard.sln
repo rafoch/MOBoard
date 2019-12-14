@@ -23,7 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOBoard.Board.Read", "MOBoa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MOBoard.Tests", "MOBoard.Tests", "{E903EB8F-F5A7-46A0-8769-C5E4B7362DE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBoard.UnitTests", "UnitTests\MOBoard.UnitTests.csproj", "{2A50B11F-80D5-41D6-B756-BEA8BDDDE7F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOBoard.UnitTests", "UnitTests\MOBoard.UnitTests.csproj", "{2A50B11F-80D5-41D6-B756-BEA8BDDDE7F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBoard.Write.Project", "MOBoard.Write.Project\MOBoard.Write.Project.csproj", "{C4427572-525D-438A-9785-9D4BB05AA829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBoard.Read.Project", "MOBoard.Read.Project\MOBoard.Read.Project.csproj", "{DE5DEDF3-1858-492B-B818-E8D0C0666283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{2A50B11F-80D5-41D6-B756-BEA8BDDDE7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A50B11F-80D5-41D6-B756-BEA8BDDDE7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A50B11F-80D5-41D6-B756-BEA8BDDDE7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4427572-525D-438A-9785-9D4BB05AA829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4427572-525D-438A-9785-9D4BB05AA829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4427572-525D-438A-9785-9D4BB05AA829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4427572-525D-438A-9785-9D4BB05AA829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE5DEDF3-1858-492B-B818-E8D0C0666283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5DEDF3-1858-492B-B818-E8D0C0666283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5DEDF3-1858-492B-B818-E8D0C0666283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5DEDF3-1858-492B-B818-E8D0C0666283}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

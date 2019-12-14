@@ -27,6 +27,9 @@ namespace MOBoard.Issues.Read.Domain
         public DateTime? DueDate { get; private set; }
         public Guid CreatorId { get; private set; }
         public string Description { get; private set; }
+        public Guid ProjectId { get; private set; }
+        public int IssueNumber { get; private set; }
+        public string IssueFullNumber { get; private set; }
         public Guid? AssignedPersonId { get; set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }
         [NotMapped]

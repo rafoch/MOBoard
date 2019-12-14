@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace MOBoard.Board.Write.DataAccess
+namespace MOBoard.Read.Project.DataAccess
 {
-    public class BoardWriteContext : DbContext
+    public class ProjectReadonlyContext : DbContext
     {
-        public BoardWriteContext(DbContextOptions<BoardWriteContext> options) : base(options)
+        public ProjectReadonlyContext(DbContextOptions<ProjectReadonlyContext> options) : base(options)
         {
         }
 
@@ -22,7 +22,6 @@ namespace MOBoard.Board.Write.DataAccess
             return saveChangesAsync;
         }
 
-        public DbSet<Domain.Board> Boards { get; set; }
-        public DbSet<Domain.Column> Columns { get; set; }
+        public DbSet<Domain.Project> Projects { get; set; }
     }
 }

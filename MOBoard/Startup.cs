@@ -23,6 +23,8 @@ using MOBoard.Issues.Read.DataAccess;
 using MOBoard.Web.Extensions;
 using MOBoard.Web.Filters;
 using MOBoard.Board.Write.DataAccess;
+using MOBoard.Read.Project.DataAccess;
+using MOBoard.Write.Project.DataAccess;
 
 namespace MOBoard.Web
 {
@@ -207,6 +209,10 @@ namespace MOBoard.Web
             {
                 services.ConfigureWriteContext<BoardWriteContext>(Configuration);
                 services.ConfigureReadonlyContext<BoardReadonlyContext>(Configuration);
+            }
+            {
+                services.ConfigureWriteContext<ProjectWriteContext>(Configuration);
+                services.ConfigureReadonlyContext<ProjectReadonlyContext>(Configuration);
             }
         }
     }

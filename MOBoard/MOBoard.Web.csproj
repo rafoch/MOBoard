@@ -48,6 +48,8 @@
     <ProjectReference Include="..\MOBoard.Common\MOBoard.Common.csproj" />
     <ProjectReference Include="..\MOBoard.Issues.Read\MOBoard.Issues.Read.csproj" />
     <ProjectReference Include="..\MOBoard.Issues.Write\MOBoard.Issues.Write.csproj" />
+    <ProjectReference Include="..\MOBoard.Read.Project\MOBoard.Read.Project.csproj" />
+    <ProjectReference Include="..\MOBoard.Write.Project\MOBoard.Write.Project.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

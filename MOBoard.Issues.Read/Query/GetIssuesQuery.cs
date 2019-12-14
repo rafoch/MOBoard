@@ -7,5 +7,11 @@ namespace MOBoard.Issues.Read.Query
 {
     public class GetIssuesQuery : IQuery<IList<IssueDto>>
     {
+        public GetIssuesQuery(Guid projectId)
+        {
+            ProjectId = projectId;
+        }
+
+        public Guid ProjectId { get; set; }
     }
 }
