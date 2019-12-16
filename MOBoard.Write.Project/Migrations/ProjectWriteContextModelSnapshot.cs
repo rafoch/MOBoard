@@ -53,6 +53,44 @@ namespace MOBoard.Write.Project.Migrations
 
                     b.ToTable("Projects");
                 });
+
+            modelBuilder.Entity("MOBoard.Write.Project.Domain.ProjectPerson", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PermissionType")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("RemovedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectPerson");
+                });
+
+            modelBuilder.Entity("MOBoard.Write.Project.Domain.ProjectPerson", b =>
+                {
+                    b.HasOne("MOBoard.Write.Project.Domain.Project", null)
+                        .WithMany("ProjectPersons")
+                        .HasForeignKey("ProjectId");
+                });
 #pragma warning restore 612, 618
         }
     }

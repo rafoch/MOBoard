@@ -32,6 +32,9 @@
         {
             private const string ProjectBase = BaseRoute.Index + "/project/";
             public const string Create = ProjectBase + "create";
+            public const string Get = ProjectBase + "{id}";
+            public const string Delete = ProjectBase + "{id}";
+            public const string AddPerson = ProjectBase + "{id}/add";
         }
     }
 }

@@ -25,6 +25,7 @@ using MOBoard.Web.Filters;
 using MOBoard.Board.Write.DataAccess;
 using MOBoard.Read.Project.DataAccess;
 using MOBoard.Write.Project.DataAccess;
+using Newtonsoft.Json;
 
 namespace MOBoard.Web
 {
@@ -40,7 +41,9 @@ namespace MOBoard.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMvc(
+                options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             var tokenValidationParameters = TokenValidationParametersProvider.Get();
 
             services.AddSingleton(tokenValidationParameters);

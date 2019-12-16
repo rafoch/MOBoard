@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MOBoard.Common.Types;
 
 namespace MOBoard.Board.Read.Domain
@@ -7,15 +8,17 @@ namespace MOBoard.Board.Read.Domain
     {
         private readonly ISet<Column> _columns = new HashSet<Column>();
 
-        public Board(string name, BoardType type)
+        public Board(string name, BoardType type, Guid projectId)
         {
             Name = name;
             Type = type;
+            ProjectId = projectId;
             Columns = _columns;
         }
 
         public string Name { get; }
         public BoardType Type { get; }
+        public Guid ProjectId { get; }
         public ISet<Column> Columns { get; }
     }
 

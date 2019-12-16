@@ -3,7 +3,7 @@ using MOBoard.Common.Types;
 
 namespace MOBoard.Issues.Write.Domain
 {
-    public class IssueHistory : AggregateRoot
+    public class IssueHistory : BaseEntity<Guid>
     {
         public IssueHistory(Guid userId, ActionType actionType)
         {
