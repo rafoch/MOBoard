@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MOBoard.Auth.Users.Write.Domain;
+using MOBoard.Auth.Users.Read.Domain;
 
-namespace MOBoard.Auth.Users.Write.DataAccess
+namespace MOBoard.Auth.Users.Read.DataAccess
 {
     public class AuthUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
+            builder.ToTable("Users", "auth");
             builder.HasMany(u => u.Tokens)
                 .WithOne(t => t.ApplicationUser);
             builder.Property(u => u.CreatedAt).IsRequired();

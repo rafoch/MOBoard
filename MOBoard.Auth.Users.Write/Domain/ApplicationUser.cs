@@ -9,7 +9,8 @@ namespace MOBoard.Auth.Users.Write.Domain
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool ChangePassword { get; set; }
-
+        public DateTime CreatedAt { get; set; }
+        public DateTime? RemovedAt { get; set; }
         public ISet<RefreshToken> Tokens { get; set; }
     }
 }

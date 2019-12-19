@@ -14,7 +14,13 @@ namespace MOBoard.Auth.Users.Read.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.HasDefaultSchema("Auth");
+            builder.ApplyConfiguration(new AuthUserConfiguration());
             base.OnModelCreating(builder);
         }
+
+        public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<ApplicationRole> UsersRoles { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

@@ -36,5 +36,11 @@
             public const string Delete = ProjectBase + "{id}";
             public const string AddPerson = ProjectBase + "{id}/add";
         }
+
+        public static class User
+        {
+            private const string UserBase = BaseRoute.Index + "/user/";
+            public const string Search = UserBase + "search";
+        }
     }
 }
