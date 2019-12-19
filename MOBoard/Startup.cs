@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Autofac;
@@ -24,8 +25,10 @@ using MOBoard.Web.Extensions;
 using MOBoard.Web.Filters;
 using MOBoard.Board.Write.DataAccess;
 using MOBoard.Read.Project.DataAccess;
+using MOBoard.Web.ContractorsFilters.V1.Auth;
 using MOBoard.Write.Project.DataAccess;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace MOBoard.Web
 {
@@ -77,6 +80,8 @@ namespace MOBoard.Web
                     Title = "MOBoard",
                     Version = "V1"
                 });
+                
+                c.ExampleFilters();
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -98,7 +103,12 @@ namespace MOBoard.Web
                     },  new List<string>()}
                 });
 
+                var xml = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xml);
+                c.IncludeXmlComments(xmlPath);
+
             });
+            services.AddSwaggerExamplesFromAssemblyOf<Startup>();
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
