@@ -9,7 +9,7 @@
 
         public static int GenerateNextIssueNumber(int lastIssueNumber)
         {
-            return lastIssueNumber++;
+            return ++lastIssueNumber;
         }
     }
 }
