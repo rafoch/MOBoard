@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MOBoard.Auth.Users.Read.Queries;
 using MOBoard.Common.Contractors.V1;
 using MOBoard.Common.Contractors.V1.Project;
 using MOBoard.Common.Dispatchers;
@@ -58,22 +59,24 @@ namespace MOBoard.Web.Controllers.V1.Project
         }
 
         [HttpDelete(ApiRoutes.Project.RemovePerson)]
-        public async Task<IActionResult> RemovePersonFromProject([FromRoute] Guid projectId, [FromRoute] Guid userId)
+        public async Task<IActionResult> RemovePersonFromProject([FromRoute] Guid id, [FromRoute] Guid userId)
         {
             var requestUserId = HttpContext.GetUserId();
             var removeUserFromProjectCommand = new RemoveUserFromProjectCommand(
                 userId, 
-                projectId, 
+                id, 
                 requestUserId);
             await SendAsync(removeUserFromProjectCommand);
             return Ok();
         }
 
         [HttpGet(ApiRoutes.Project.GetPersons)]
-        public async Task<IActionResult> GetAllProjectPersons([FromRoute] Guid projectId)
+        public async Task<IActionResult> GetAllProjectPersons([FromRoute] Guid id)
         {
             // return await SendAsyncWithResult<>()
-            return Ok();
+            var queryAsync = await QueryAsync(new GetProjectUsersByProjectIdQuery(id));
+            var projectPersons = await QueryAsync(new GetUsernamesForProjectUsersQuery(queryAsync));
+            return Ok(projectPersons);
         }
     }
 }
