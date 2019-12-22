@@ -29,6 +29,7 @@ namespace MOBoard.Read.Project.Query
                     PermissionType = (int) pp.PermissionType, 
                     UserId = pp.UserId
                 }).ToList();
+
             }
             else
             {
