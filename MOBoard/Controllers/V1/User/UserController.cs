@@ -10,7 +10,7 @@ using MOBoard.Common.Filter;
 using MOBoard.Common.Types;
 using MOBoard.Web.Controllers.Base;
 
-namespace MOBoard.Web.Controllers.V1.Issue
+namespace MOBoard.Web.Controllers.V1.User
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UserController : BaseController

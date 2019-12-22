@@ -10,8 +10,9 @@ using MOBoard.Common.Extensions;
 using MOBoard.Read.Project.Query;
 using MOBoard.Web.Controllers.Base;
 using MOBoard.Write.Project.Command;
+using MOBoard.Write.Project.Domain;
 
-namespace MOBoard.Web.Controllers.V1.Issue
+namespace MOBoard.Web.Controllers.V1.Project
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ProjectController : BaseController
@@ -44,9 +45,34 @@ namespace MOBoard.Web.Controllers.V1.Issue
         }
 
         [HttpPost(ApiRoutes.Project.AddPerson)]
-        public async Task<IActionResult> AddPersonToProject([FromRoute] Guid projectId, [FromBody] Guid test)
+        public async Task<IActionResult> AddPersonToProject([FromRoute] Guid projectId, [FromBody] AddUserToProjectRequest addUserToProjectRequest)
         {
-            //todo add invitations for project 
+            var userId = HttpContext.GetUserId();
+            var addUserToProjectCommand = new AddUserToProjectCommand(
+                addUserToProjectRequest.UserId, 
+                (PermissionType)addUserToProjectRequest.PermissionType, 
+                projectId,
+                userId);
+            await SendAsync(addUserToProjectCommand);
+            return Ok();
+        }
+
+        [HttpDelete(ApiRoutes.Project.RemovePerson)]
+        public async Task<IActionResult> RemovePersonFromProject([FromRoute] Guid projectId, [FromRoute] Guid userId)
+        {
+            var requestUserId = HttpContext.GetUserId();
+            var removeUserFromProjectCommand = new RemoveUserFromProjectCommand(
+                userId, 
+                projectId, 
+                requestUserId);
+            await SendAsync(removeUserFromProjectCommand);
+            return Ok();
+        }
+
+        [HttpGet(ApiRoutes.Project.GetPersons)]
+        public async Task<IActionResult> GetAllProjectPersons([FromRoute] Guid projectId)
+        {
+            // return await SendAsyncWithResult<>()
             return Ok();
         }
     }
