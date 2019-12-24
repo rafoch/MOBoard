@@ -37,7 +37,6 @@ namespace MOBoard.Web.Controllers.V1.Issue
                 projectAlias);
 
             await SendAsync(createIssueCommand);
-
             return Ok();
         }
 
