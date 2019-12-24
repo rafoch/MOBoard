@@ -26,6 +26,9 @@
             public const string Create = IssueBase + "create";
             public const string All = IssueBase + "all";
             public const string Assignment = IssueBase + "assignment";
+            public const string Edit = IssueBase + "{id}/edit";
+            public const string Remove = IssueBase + "{id}/remove";
+            public const string Get = IssueBase + "{id}";
         }
 
         public static class Project

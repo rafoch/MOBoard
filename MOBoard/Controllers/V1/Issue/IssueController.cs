@@ -45,10 +45,30 @@ namespace MOBoard.Web.Controllers.V1.Issue
             return Ok(await QueryAsync(new GetIssuesQuery(projectId)));
         }
 
-        [HttpGet(ApiRoutes.Issue.Assignment)]
-        public async Task<IActionResult> ChangeAssignment()
+        [HttpGet(ApiRoutes.Issue.Get)]
+        public async Task<IActionResult> GetIssue([FromQuery] Guid id)
         {
-            await SendAsync(new ChangeAsignmentCommand(Guid.Parse("CBCA68EB-85B2-4725-C7EC-08D77FEEC9E4"),
+            return Ok(await QueryAsync(new GetIssueByIdQuery(id)));
+        }
+
+        [HttpDelete(ApiRoutes.Issue.Remove)]
+        public async Task<IActionResult> DeleteIssue([FromQuery] Guid id)
+        {
+            await SendAsync(new RemoveIssueCommand(id));
+            return Ok();
+        }
+
+        [HttpPut(ApiRoutes.Issue.Edit)]
+        public async Task<IActionResult> EditIssue([FromRoute] Guid id, [FromBody] EditIssueRequest editIssueRequest)
+        {
+            await SendAsync(new EditIssueCommand(editIssueRequest.Name, editIssueRequest.Description, id));
+            return Ok();
+        }
+
+        [HttpGet(ApiRoutes.Issue.Assignment)]
+        public async Task<IActionResult> ChangeAssignment([FromBody] ChangeAssignementRequest changeAssignementRequest)
+        {
+            await SendAsync(new ChangeAsignmentCommand(changeAssignementRequest.ChangeUserId,
                 HttpContext.GetUserId()));
             return Ok();
         }

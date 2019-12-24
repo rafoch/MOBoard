@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MOBoard.Common.Services;
 using MOBoard.Common.Types;
+using MOBoard.Issues.Write.Commands;
 using MOBoard.Issues.Write.Domain.OperationState;
 
 namespace MOBoard.Issues.Write.Domain
@@ -35,7 +36,7 @@ namespace MOBoard.Issues.Write.Domain
             IssueHistories.Add(new IssueHistory(creatorId, ActionType.Created));
         }
 
-        public static Issue CreateIssue(string name, Guid creatorId, string description, Guid projectId)
+        public static Issue Create(string name, Guid creatorId, string description, Guid projectId)
         {
             return new Issue(name, creatorId, description, projectId);
         }
@@ -72,6 +73,12 @@ namespace MOBoard.Issues.Write.Domain
             AssignState.Handle(this, changeUserId);
             ModifiedAt = DateTime.Now;
             AssignedPersonId = changeUserId;
+        }
+
+        public void Edit(EditIssueCommand command)
+        {
+            Name = command.Name;
+            Description = command.Description;
         }
     }
 }
