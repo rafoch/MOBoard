@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="ContractorsFilters\V1\Auth\" />
-    <Folder Include="States\" />
   </ItemGroup>
 
 </Project>

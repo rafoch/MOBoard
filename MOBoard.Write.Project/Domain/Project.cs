@@ -20,6 +20,7 @@ namespace MOBoard.Write.Project.Domain
             CreatorId = creatorId;
             ProjectPersons = _projectPersons;
             ProjectPersons.Add(new ProjectPerson(creatorId, PermissionType.Admin));
+            ProjectVersions = new HashSet<ProjectVersion>();
         }
 
         [Required]
@@ -31,5 +32,6 @@ namespace MOBoard.Write.Project.Domain
         public Guid CreatorId { get; private set; }
 
         public ISet<ProjectPerson> ProjectPersons { get; private set; }
+        public ISet<ProjectVersion> ProjectVersions { get; private set; }
     }
 }

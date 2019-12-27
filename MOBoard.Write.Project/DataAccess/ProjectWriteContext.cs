@@ -23,5 +23,6 @@ namespace MOBoard.Write.Project.DataAccess
         }
 
         public DbSet<Domain.Project> Projects { get; set; }
+        public DbSet<Domain.ProjectVersion> ProjectVersions{ get; set; }
     }
 }

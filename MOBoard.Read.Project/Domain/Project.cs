@@ -19,5 +19,6 @@ namespace MOBoard.Read.Project.Domain
         public string Alias { get; private set; }
         public Guid CreatorId { get; set; }
         public ISet<ProjectPerson> ProjectPersons { get; private set; }
+        public ISet<ProjectVersion> ProjectVersions { get; private set; }
     }
 }

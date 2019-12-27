@@ -16,6 +16,7 @@ namespace MOBoard.Issues.Write.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("Issue");
             modelBuilder.ApplyConfiguration(new IssueConfiguration());
         }
 
@@ -27,5 +28,6 @@ namespace MOBoard.Issues.Write.DataAccess
 
         public DbSet<Issue> Issues { get; set; }
         public DbSet<IssueHistory> IssueHistories { get; set; }
+        public DbSet<IssueComment> IssueComments { get; set; }
     }
 }

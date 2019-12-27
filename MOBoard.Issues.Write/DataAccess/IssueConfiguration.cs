@@ -10,7 +10,12 @@ namespace MOBoard.Issues.Write.DataAccess
         {
             modelBuilder.ToTable("Issues", "Issue");
             modelBuilder.Property(i => i.DueDate).HasColumnType("Date");
+            modelBuilder.HasOne(i => i.FixedVersion)
+                .WithOne(version => version.Issue)
+                .HasForeignKey<FixedVersion>(i => i.IssueId);
             modelBuilder.HasMany(i => i.IssueHistories).WithOne(h => h.Issue);
+            modelBuilder.HasMany(i => i.AffectedVersions).WithOne(h => h.Issue);
+            modelBuilder.HasMany(i => i.IssueComments).WithOne(h => h.Issue);
         }
     }
 }

@@ -4,14 +4,16 @@ using MOBoard.Write.Project.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MOBoard.Write.Project.Migrations
 {
     [DbContext(typeof(ProjectWriteContext))]
-    partial class ProjectWriteContextModelSnapshot : ModelSnapshot
+    [Migration("20191227224851_AddProjectVersions")]
+    partial class AddProjectVersions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

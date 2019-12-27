@@ -31,8 +31,35 @@ namespace MOBoard.Issues.Read.Domain
         public int IssueNumber { get; private set; }
         public string IssueFullNumber { get; private set; }
         public Guid? AssignedPersonId { get; set; }
+        public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }
+        public ISet<AffectedVersion> AffectedVersions { get; private set; }
+        public ISet<IssueComment> IssueComments { get; private set; }
         [NotMapped]
         public PersonAssignmentState AssignState { get; set; }
+    }
+
+    public class FixedVersion : BaseEntity<Guid>
+    {
+        public FixedVersion()
+        {
+
+        }
+        public Guid VersionId { get; set; }
+        public Issue Issue { get; set; }
+        public Guid IssueId { get; set; }
+    }
+
+    public class AffectedVersion : BaseEntity<Guid>
+    {
+        public AffectedVersion()
+        {
+
+        }
+
+        public Guid VersionId { get; set; }
+        public Issue Issue { get; set; }
+        public Guid IssueId { get; set; }
+
     }
 }
