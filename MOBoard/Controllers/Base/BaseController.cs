@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MOBoard.Common.Contractors.V1;
 using MOBoard.Common.Dispatchers;
+using MOBoard.Common.Extensions;
 using MOBoard.Common.Types;
 
 namespace MOBoard.Web.Controllers.Base
@@ -30,6 +31,18 @@ namespace MOBoard.Web.Controllers.Base
             }
 
             return Ok(data);
+        }
+
+        protected async Task AuthorizedSendAsync<T>(T command) where T : IAuthorizedCommand
+        {
+            command.UserId = HttpContext.GetUserId();
+            await _dispatcher.AuthorizedSendAsync(command);
+        }
+
+        protected async Task<TResult> AuthorizedSendAsync<T, TResult>(T command) where T : IAuthorizedCommand<TResult>
+        {
+            command.UserId = HttpContext.GetUserId();
+            return await _dispatcher.AuthorizedSendAsync<T, TResult>(command);
         }
 
         protected ActionResult<PagedResult<T>> Collection<T>(PagedResult<T> pagedResult)

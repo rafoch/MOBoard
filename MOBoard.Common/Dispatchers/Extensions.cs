@@ -7,6 +7,7 @@ namespace MOBoard.Common.Dispatchers
         public static void AddDispatchers(this ContainerBuilder builder)
         {
             builder.RegisterType<Dispatcher>().As<IDispatcher>();
+            builder.RegisterType<AuthorizedDispatcher>().As<IAuthorizedDispatcher>();
             builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>();
             builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>();
         }

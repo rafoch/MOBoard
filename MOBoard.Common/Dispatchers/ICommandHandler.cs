@@ -6,4 +6,9 @@ namespace MOBoard.Common.Dispatchers
     {
         Task HandleAsync(TCommand command);
     }
+
+    public interface IAuthorizedCommandHandler<in TAuthorizedCommand> where TAuthorizedCommand : IAuthorizedCommand
+    {
+        Task HandleAsync(TAuthorizedCommand command);
+    }
 }

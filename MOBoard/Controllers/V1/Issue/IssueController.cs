@@ -22,6 +22,13 @@ namespace MOBoard.Web.Controllers.V1.Issue
         {
         }
 
+        [HttpGet("testissue")]
+        public async Task<IActionResult> Test()
+        {
+            await AuthorizedSendAsync(new AuthorizedCommand());
+            return Ok();
+        }
+
         [HttpPost(ApiRoutes.Issue.Create)]
         public async Task<IActionResult> CreateIssue([FromBody] CreateIssueRequest createIssueRequest)
         {
