@@ -9,6 +9,7 @@ namespace MOBoard.Common.Dispatchers
             builder.RegisterType<Dispatcher>().As<IDispatcher>();
             builder.RegisterType<AuthorizedDispatcher>().As<IAuthorizedDispatcher>();
             builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>();
+            builder.RegisterType<AuthorizedQueryDispatcher>().As<IAuthorizedQueryDispatcher>();
             builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>();
         }
     }

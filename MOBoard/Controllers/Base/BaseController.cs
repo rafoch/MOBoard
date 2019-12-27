@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MOBoard.Common.Contractors.V1;
@@ -22,6 +23,12 @@ namespace MOBoard.Web.Controllers.Base
 
         protected async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
             => await _dispatcher.QueryAsync<TResult>(query);
+
+        protected async Task<TResult> AuthorizedQueryAsync<TResult>(IAuthorizedQuery<TResult> query)
+        {
+            query.UserId = HttpContext.GetUserId();
+            return await _dispatcher.AuthorizedQueryAsync<TResult>(query);
+        }
 
         protected ActionResult<T> Single<T>(T data)
         {
@@ -56,6 +63,16 @@ namespace MOBoard.Web.Controllers.Base
         }
 
         protected ActionResult<ImmutableList<T>> Collection<T>(ImmutableList<T> list)
+        {
+            if (list == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(list);
+        }
+
+        protected ActionResult<IReadOnlyCollection<T>> Collection<T>(IReadOnlyCollection<T> list)
         {
             if (list == null)
             {

@@ -9,7 +9,7 @@ using MOBoard.Read.Project.DataAccess;
 
 namespace MOBoard.Read.Project.Query
 {
-    public class GetProjectAliasByIdQuery : IQuery<string>
+    public class GetProjectAliasByIdQuery : IAuthorizedQuery<string>
     {
         public GetProjectAliasByIdQuery(Guid projectId)
         {
@@ -20,7 +20,7 @@ namespace MOBoard.Read.Project.Query
     }
 
     [UsedImplicitly]
-    public class GetProjectAliasByIdQueryHandler : IQueryHandler<GetProjectAliasByIdQuery, string>
+    public class GetProjectAliasByIdQueryHandler : IAuthorizedQueryHandler<GetProjectAliasByIdQuery, string>
     {
         private readonly ProjectReadonlyContext _projectReadonlyContext;
 

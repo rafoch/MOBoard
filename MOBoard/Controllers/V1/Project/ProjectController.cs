@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -33,9 +34,9 @@ namespace MOBoard.Web.Controllers.V1.Project
         }
 
         [HttpGet(ApiRoutes.Project.Get)]
-        public async Task<IActionResult> GetProjectData([FromRoute] Guid id)
+        public async Task<ActionResult<GetProjectResponse>> GetProjectData([FromRoute] Guid id)
         {
-            return Ok(await QueryAsync(new GetProjectByIdQuery(id)));
+            return Single(await QueryAsync(new GetProjectByIdQuery(id)));
         }
 
         [HttpDelete(ApiRoutes.Project.Delete)]
@@ -71,12 +72,12 @@ namespace MOBoard.Web.Controllers.V1.Project
         }
 
         [HttpGet(ApiRoutes.Project.GetPersons)]
-        public async Task<IActionResult> GetAllProjectPersons([FromRoute] Guid id)
+        public async Task<ActionResult<IReadOnlyCollection<GetAllProjectPersonsResponse>>> GetAllProjectPersons([FromRoute] Guid id)
         {
             // return await SendAsyncWithResult<>()
             var queryAsync = await QueryAsync(new GetProjectUsersByProjectIdQuery(id));
             var projectPersons = await QueryAsync(new GetUsernamesForProjectUsersQuery(queryAsync));
-            return Ok(projectPersons);
+            return Collection(projectPersons);
         }
     }
 }

@@ -9,15 +9,18 @@ namespace MOBoard.Common.Dispatchers
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
         private readonly IAuthorizedDispatcher _authorizedDispatcher;
+        private readonly IAuthorizedQueryDispatcher _authorizedQueryDispatcher;
 
         public Dispatcher(
             ICommandDispatcher commandDispatcher, 
             IQueryDispatcher queryDispatcher,
-            IAuthorizedDispatcher authorizedDispatcher)
+            IAuthorizedDispatcher authorizedDispatcher,
+            IAuthorizedQueryDispatcher authorizedQueryDispatcher)
         {
             _commandDispatcher = commandDispatcher;
             _queryDispatcher = queryDispatcher;
             _authorizedDispatcher = authorizedDispatcher;
+            _authorizedQueryDispatcher = authorizedQueryDispatcher;
         }
 
         public async Task SendAsync<TCommand>(TCommand command) where TCommand : ICommand
@@ -32,6 +35,9 @@ namespace MOBoard.Common.Dispatchers
 
         public async Task<TResult> SendAsync<TCommand, TResult>(TCommand command) where TCommand : ICommand<TResult>
             => await _commandDispatcher.SendAsync<TCommand, TResult>(command);
+
+        public async Task<TResult> AuthorizedQueryAsync<TResult>(IAuthorizedQuery<TResult> query)
+            => await _authorizedQueryDispatcher.QueryAuthorizedAsync<TResult>(query);
 
         public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
             => await _queryDispatcher.QueryAsync<TResult>(query);

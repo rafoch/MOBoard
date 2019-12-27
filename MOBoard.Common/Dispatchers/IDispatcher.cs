@@ -10,5 +10,6 @@ namespace MOBoard.Common.Dispatchers
         Task AuthorizedSendAsync<TCommand>(TCommand command) where TCommand : IAuthorizedCommand;
         Task<TResult> AuthorizedSendAsync<TCommand, TResult>(TCommand command) where TCommand : IAuthorizedCommand<TResult>;
         Task<TResult> SendAsync<TCommand, TResult>(TCommand command) where TCommand : ICommand<TResult>;
+        Task<TResult> AuthorizedQueryAsync<TResult>(IAuthorizedQuery<TResult> query);
     }
 }

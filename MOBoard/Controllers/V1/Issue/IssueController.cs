@@ -22,28 +22,18 @@ namespace MOBoard.Web.Controllers.V1.Issue
         {
         }
 
-        [HttpGet("testissue")]
-        public async Task<IActionResult> Test()
-        {
-            await AuthorizedSendAsync(new AuthorizedCommand());
-            return Ok();
-        }
-
         [HttpPost(ApiRoutes.Issue.Create)]
         public async Task<IActionResult> CreateIssue([FromBody] CreateIssueRequest createIssueRequest)
         {
-            var userId = HttpContext.GetUserId();
-
-            var projectAlias = await QueryAsync(new GetProjectAliasByIdQuery(createIssueRequest.ProjectId));
+            var projectAlias = await AuthorizedQueryAsync(new GetProjectAliasByIdQuery(createIssueRequest.ProjectId));
 
             var createIssueCommand = new CreateIssueCommand(
                 createIssueRequest.Name,
-                userId,
                 createIssueRequest.Description,
                 createIssueRequest.ProjectId,
                 projectAlias);
 
-            await SendAsync(createIssueCommand);
+            await AuthorizedSendAsync(createIssueCommand);
             return Ok();
         }
 
@@ -54,9 +44,9 @@ namespace MOBoard.Web.Controllers.V1.Issue
         }
 
         [HttpGet(ApiRoutes.Issue.Get)]
-        public async Task<IActionResult> GetIssue([FromQuery] Guid id)
+        public async Task<ActionResult<IssueDto>> GetIssue([FromQuery] Guid id)
         {
-            return Ok(await QueryAsync(new GetIssueByIdQuery(id)));
+            return Single(await QueryAsync(new GetIssueByIdQuery(id)));
         }
 
         [HttpDelete(ApiRoutes.Issue.Remove)]
