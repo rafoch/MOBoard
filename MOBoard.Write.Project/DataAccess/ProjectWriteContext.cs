@@ -23,7 +23,6 @@ namespace MOBoard.Write.Project.DataAccess
             var saveChangesAsync = await base.SaveChangesAsync(cancellationToken);
             return saveChangesAsync;
         }
-
         public DbSet<Domain.Project> Projects { get; set; }
         public DbSet<Domain.ProjectVersion> ProjectVersions{ get; set; }
     }
