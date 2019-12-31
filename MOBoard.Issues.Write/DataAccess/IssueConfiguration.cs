@@ -9,6 +9,7 @@ namespace MOBoard.Issues.Write.DataAccess
         public void Configure(EntityTypeBuilder<Issue> modelBuilder)
         {
             modelBuilder.ToTable("Issues", "Issue");
+            modelBuilder.HasKey(p => p.Id);
             modelBuilder.Property(i => i.DueDate).HasColumnType("Date");
             modelBuilder.HasOne(i => i.FixedVersion)
                 .WithOne(version => version.Issue)

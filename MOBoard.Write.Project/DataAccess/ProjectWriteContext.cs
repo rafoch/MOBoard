@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MOBoard.Write.Project.Domain;
 
 namespace MOBoard.Write.Project.DataAccess
 {

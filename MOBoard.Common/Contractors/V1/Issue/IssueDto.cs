@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MOBoard.Common.DomainTypes;
 
 namespace MOBoard.Common.Contractors.V1.Issue
 {
@@ -13,6 +14,7 @@ namespace MOBoard.Common.Contractors.V1.Issue
         public IEnumerable<IssueHistoryDto> IssueHistories { get; set; }
         public int IssueNumber { get; set; }
         public string IssueFullNumber { get; set; }
+        public IssuePriorityLevel Priority { get; set; }
     }
 
     public class IssueHistoryDto

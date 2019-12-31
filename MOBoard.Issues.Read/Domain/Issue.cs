@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MOBoard.Common.DomainTypes;
 using MOBoard.Common.Types;
 using MOBoard.Issues.Read.Domain.State;
 
@@ -30,6 +31,7 @@ namespace MOBoard.Issues.Read.Domain
         public Guid ProjectId { get; private set; }
         public int IssueNumber { get; private set; }
         public string IssueFullNumber { get; private set; }
+        public IssuePriorityLevel Priority { get; private set; }
         public Guid? AssignedPersonId { get; set; }
         public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }

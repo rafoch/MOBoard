@@ -27,6 +27,7 @@ namespace MOBoard.Issues.Read.Query
                     Name = x.Name,
                     CreatedAt = x.CreatedAt,
                     ModifiedAt = x.ModifiedAt,
+                    Priority = x.Priority,
                     CreatorUserId = x.CreatorId,
                     IssueNumber = x.IssueNumber,
                     IssueFullNumber = x.IssueFullNumber,
