@@ -3,7 +3,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MOBoard.Board.Read.Query;
+using MOBoard.Board.Write.Command;
 using MOBoard.Common.Contractors.V1;
+using MOBoard.Common.Contractors.V1.Board;
 using MOBoard.Common.Dispatchers;
 using MOBoard.Web.Controllers.Base;
 
@@ -12,8 +15,11 @@ namespace MOBoard.Web.Controllers.V1.Auth
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BoardController : BaseController
     {
+        private readonly IDispatcher _dispatcher;
+
         public BoardController(IDispatcher dispatcher) : base(dispatcher)
         {
+            _dispatcher = dispatcher;
         }
 
         [HttpGet(ApiRoutes.Board.All)]
@@ -23,14 +29,16 @@ namespace MOBoard.Web.Controllers.V1.Auth
         }
 
         [HttpGet(ApiRoutes.Board.Get)]
-        public async Task<IActionResult> Get([FromRoute] Guid id)
+        public async Task<ActionResult<Guid>> Get([FromRoute] Guid id)
         {
-            return Ok();
+            var authorizedQueryAsync = await _dispatcher.AuthorizedQueryAsync(new GetBoardByIdAuthorizedQuery(id));
+            return Single(authorizedQueryAsync);
         }
 
         [HttpPost(ApiRoutes.Board.Create)]
-        public async Task<IActionResult> Add([FromRoute] Guid id)
+        public async Task<IActionResult> Add([FromRoute] Guid projectId, [FromBody] CreateBoardRequest request)
         {
+            await _dispatcher.AuthorizedSendAsync(new CreateNewBoardAuthorizedCommand(projectId, request.Name));
             return Ok();
         }
 

@@ -52,7 +52,7 @@
         {
             private const string BoardBase = BaseRoute.Index + "/board/";
             public const string All = BoardBase + "all";
-            public const string Create = BoardBase;
+            public const string Create = BoardBase + "{projectId}";
             public const string Get = BoardBase + "{id}";
             public const string Remove = BoardBase + "{id}/remove";
             public const string Update = BoardBase + "{id}/Update";

@@ -8,6 +8,9 @@ namespace MOBoard.Board.Read.Domain
     {
         private readonly ISet<Column> _columns = new HashSet<Column>();
 
+        public Board()      //EF needs it
+        {               
+        }
         public Board(string name, BoardType type, Guid projectId)
         {
             Name = name;

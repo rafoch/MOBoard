@@ -7,6 +7,11 @@ namespace MOBoard.Board.Write.Domain
     public class Board : AggregateRoot
     {
         private readonly ISet<Column> _columns = new HashSet<Column>();
+
+        public Board()
+        {
+        }
+
         public Board(string name, BoardType type, Guid projectId)
         {
             Name = name;
@@ -15,6 +20,9 @@ namespace MOBoard.Board.Write.Domain
             Columns = _columns;
         }
 
+        public static Board Create(Guid projectId, string name)
+            => new Board(name, BoardType.Normal, projectId);
+        
         public string Name { get; private set; }
         public BoardType Type { get; private set; }
         public Guid ProjectId { get; private set; }
