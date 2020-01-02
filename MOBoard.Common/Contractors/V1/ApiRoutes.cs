@@ -25,7 +25,7 @@
             private const string IssueBase = BaseRoute.Index + "/issue/";
             public const string Create = IssueBase + "create";
             public const string All = IssueBase + "all";
-            public const string Assignment = IssueBase + "assignment";
+            public const string Assignment = IssueBase + "{id}/assignment";
             public const string Edit = IssueBase + "{id}/edit";
             public const string Remove = IssueBase + "{id}/remove";
             public const string Get = IssueBase + "{id}";
@@ -46,6 +46,16 @@
         {
             private const string UserBase = BaseRoute.Index + "/user/";
             public const string Search = UserBase + "search";
+        }
+
+        public static class Board
+        {
+            private const string BoardBase = BaseRoute.Index + "/board/";
+            public const string All = BoardBase + "all";
+            public const string Create = BoardBase;
+            public const string Get = BoardBase + "{id}";
+            public const string Remove = BoardBase + "{id}/remove";
+            public const string Update = BoardBase + "{id}/Update";
         }
     }
 }

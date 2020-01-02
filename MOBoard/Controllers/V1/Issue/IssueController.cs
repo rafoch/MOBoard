@@ -38,9 +38,9 @@ namespace MOBoard.Web.Controllers.V1.Issue
         }
 
         [HttpGet(ApiRoutes.Issue.All)]
-        public async Task<IActionResult> GetAllIssues([FromQuery] Guid projectId)
+        public async Task<IActionResult> GetAllIssues([FromQuery] Guid id)
         {
-            return Ok(await QueryAsync(new GetIssuesQuery(projectId)));
+            return Ok(await QueryAsync(new GetIssuesQuery(id)));
         }
 
         [HttpGet(ApiRoutes.Issue.Get)]
@@ -64,7 +64,7 @@ namespace MOBoard.Web.Controllers.V1.Issue
         }
 
         [HttpGet(ApiRoutes.Issue.Assignment)]
-        public async Task<IActionResult> ChangeAssignment([FromBody] ChangeAssignementRequest changeAssignementRequest)
+        public async Task<IActionResult> ChangeAssignment([FromRoute]Guid id, [FromBody] ChangeAssignementRequest changeAssignementRequest)
         {
             await SendAsync(new ChangeAsignmentCommand(changeAssignementRequest.ChangeUserId,
                 HttpContext.GetUserId()));

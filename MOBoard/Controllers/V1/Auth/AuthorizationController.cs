@@ -1,6 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MOBoard.Auth.Users.Write.Commands.LoginUser;
@@ -69,20 +67,6 @@ namespace MOBoard.Web.Controllers.V1.Auth
             }
 
             return NotFound();
-        }
-    }
-
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class BoardController : BaseController
-    {
-        public BoardController(IDispatcher dispatcher) : base(dispatcher)
-        {
-        }
-
-        [HttpGet("/test")]
-        public IActionResult Test()
-        {
-            return Ok();
         }
     }
 }
