@@ -18,6 +18,7 @@ namespace MOBoard.Issues.Write.DataAccess
         {
             modelBuilder.HasDefaultSchema("Issue");
             modelBuilder.ApplyConfiguration(new IssueConfiguration());
+            modelBuilder.ApplyConfiguration(new IssueHistoryConfiguration());
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

@@ -22,7 +22,7 @@ namespace MOBoard.Issues.Read.Query
 
         public async Task<IList<IssueDto>> HandleAsync(GetIssuesQuery query)
         {
-            return await _context.Issues
+            return await _context.Issues.AsQueryable()
                 .Where(i => i.RemovedAt == null && i.ProjectId == query.ProjectId)
             .Select(x => new IssueDto
             {
