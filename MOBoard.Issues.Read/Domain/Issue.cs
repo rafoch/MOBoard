@@ -31,6 +31,8 @@ namespace MOBoard.Issues.Read.Domain
         public int IssueNumber { get; private set; }
         public string IssueFullNumber { get; private set; }
         public string Reproduction { get; private set; }
+        public string AcceptanceTests { get; private set; }
+
         public Guid? AssignedPersonId { get; set; }
         public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }

@@ -5,13 +5,14 @@ namespace MOBoard.Issues.Write.Commands
 {
     public class CreateIssueCommand : IAuthorizedCommand
     {
-        public CreateIssueCommand(string name, string description, Guid projectId, string projectAlias, string reproduction)
+        public CreateIssueCommand(string name, string description, Guid projectId, string projectAlias, string reproduction, string acceptanceTest)
         {
             Name = name;
             Description = description;
             ProjectId = projectId;
             ProjectAlias = projectAlias;
             Reproduction = reproduction;
+            AcceptanceTests = acceptanceTest;
         }
 
         public string Name { get; private set; }
@@ -19,5 +20,7 @@ namespace MOBoard.Issues.Write.Commands
         public Guid ProjectId { get; private set; }
         public string ProjectAlias { get; private set; }
         public string Reproduction { get; private set; }
+        public string AcceptanceTests { get; private set; }
+
     }
 }
