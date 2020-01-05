@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using MOBoard.Common.Services;
 using MOBoard.Common.Types;
 using MOBoard.Issues.Write.Commands;
@@ -84,29 +85,19 @@ namespace MOBoard.Issues.Write.Domain
             Name = command.Name;
             Description = command.Description;
         }
-    }
 
-    public class FixedVersion : BaseEntity<Guid>
-    {
-        public FixedVersion()
+        public void AddComment(string text, Guid creatorId)
         {
-            
-        }
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-
-    }
-
-    public class AffectedVersion : BaseEntity<Guid>
-    {
-        public AffectedVersion()
-        {
-            
+            IssueComments.Add(IssueComment.Create(text, creatorId, this));
         }
 
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
+        public void RemoveComment(Guid commentId)
+        {
+            var issueComment = IssueComments.SingleOrDefault(comment => comment.Id == commentId);
+            if (issueComment != null)
+            {
+                issueComment.Remove();
+            }
+        }
     }
 }

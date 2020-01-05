@@ -70,5 +70,23 @@ namespace MOBoard.Web.Controllers.V1.Issue
                 HttpContext.GetUserId()));
             return Ok();
         }
+
+        [HttpPost(ApiRoutes.Issue.AddComment)]
+        public async Task<IActionResult> AddCommentToIssue(
+            [FromRoute] Guid id,
+            [FromBody] AddCommentRequest addCommentRequest)
+        {
+            await AuthorizedSendAsync(new AddCommentToIssueCommand(addCommentRequest.Text, id));
+            return Ok();
+        }
+
+        [HttpDelete(ApiRoutes.Issue.RemoveComment)]
+        public async Task<IActionResult> RemoveCommentFromIssue(
+            [FromRoute] Guid id, 
+            [FromRoute] Guid commentId)
+        {
+            await AuthorizedSendAsync(new RemoveCommentFromIssueCommand(id, commentId));
+            return Ok();
+        }
     }
 }
