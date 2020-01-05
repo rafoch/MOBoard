@@ -25,11 +25,12 @@ namespace MOBoard.Issues.Write.Domain
             CreatorId = creatorId;
         }
 
-        private Issue(string name, Guid creatorId, string description, Guid projectId)
+        private Issue(string name, Guid creatorId, string description, Guid projectId, string reproduction)
         {
             Name = name;
             CreatorId = creatorId;
             Description = description;
+            Reproduction = reproduction;
             IssueHistories = _issueHistories;
             ProjectId = projectId;
             AssignState = new UnassignPersonPersonAssignmentState();
@@ -37,9 +38,9 @@ namespace MOBoard.Issues.Write.Domain
             IssueComments = new HashSet<IssueComment>();
         }
 
-        public static Issue Create(string name, Guid creatorId, string description, Guid projectId)
+        public static Issue Create(string name, Guid creatorId, string description, Guid projectId, string reproduction)
         {
-            return new Issue(name, creatorId, description, projectId);
+            return new Issue(name, creatorId, description, projectId, reproduction);
         }
 
         [Required]
@@ -51,6 +52,7 @@ namespace MOBoard.Issues.Write.Domain
         public int IssueNumber { get; private set; }
         public string IssueFullNumber { get; private set; }
         public Guid? AssignedPersonId { get; set; }
+        public string Reproduction { get; private set; }
         public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }
         public ISet<AffectedVersion> AffectedVersions { get; private set; }
