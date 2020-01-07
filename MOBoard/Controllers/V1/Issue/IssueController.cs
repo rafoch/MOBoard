@@ -70,5 +70,26 @@ namespace MOBoard.Web.Controllers.V1.Issue
                 HttpContext.GetUserId()));
             return Ok();
         }
+
+        [HttpPost(ApiRoutes.Issue.RegisterWorklog)]
+        public async Task<IActionResult> RegisterWorklog([FromRoute] Guid id,
+            RegisterWorklogRequest registerWorklogRequest)
+        {
+            await AuthorizedSendAsync(new RegisterWorklogAuthorizedCommand(
+                id,
+                registerWorklogRequest.Hours,
+                registerWorklogRequest.Minutes));
+            return Ok();
+        }
+
+        [HttpPost(ApiRoutes.Issue.RemoveWorklog)]
+        public async Task<IActionResult> RemoveWorklog([FromRoute] Guid id,
+            [FromRoute]Guid worklogId)
+        {
+            await AuthorizedSendAsync(new RemoveWorklogAuthorizedCommand(
+                id,
+                worklogId));
+            return Ok();
+        }
     }
 }

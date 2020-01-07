@@ -32,15 +32,16 @@ namespace MOBoard.Issues.Read.Query
                 CreatorUserId = x.CreatorId,
                 IssueNumber = x.IssueNumber,
                 IssueFullNumber = x.IssueFullNumber,
-                IssueHistories = x.IssueHistories
-                    .Where(ih => ih.RemovedAt == null)
-                    .OrderByDescending(ih => ih.CreatedAt)
-                    .Select(ih => new IssueHistoryDto
-                    {
-                        CreatedAt = ih.CreatedAt,
-                        ChangeUserId = ih.UserId,
-                        ActionType = ih.ActionType.ToString()
-                    })
+                // IssueHistories = x.IssueHistories
+                //     .Where(ih => ih.RemovedAt == null)
+                //     .OrderByDescending(ih => ih.CreatedAt)
+                //     .Select(ih => new IssueHistoryDto
+                //     {
+                //         CreatedAt = ih.CreatedAt,
+                //         ChangeUserId = ih.UserId,
+                //         ActionType = ih.ActionType.ToString()
+                //     }),
+                LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes % 60))
             }).ToListAsync();
         }
     }

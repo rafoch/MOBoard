@@ -38,7 +38,8 @@ namespace MOBoard.Issues.Read.Query
                             CreatedAt = ih.CreatedAt,
                             ChangeUserId = ih.UserId,
                             ActionType = ih.ActionType.ToString()
-                        })
+                        }),
+                    LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes % 60))
                 }).FirstOrDefaultAsync();
             return issue;
         }

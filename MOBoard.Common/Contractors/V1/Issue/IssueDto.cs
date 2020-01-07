@@ -13,6 +13,7 @@ namespace MOBoard.Common.Contractors.V1.Issue
         public IEnumerable<IssueHistoryDto> IssueHistories { get; set; }
         public int IssueNumber { get; set; }
         public string IssueFullNumber { get; set; }
+        public int LoggedTime { get; set; }
     }
 
     public class IssueHistoryDto
