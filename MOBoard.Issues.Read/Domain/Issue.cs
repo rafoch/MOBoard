@@ -40,28 +40,4 @@ namespace MOBoard.Issues.Read.Domain
         [NotMapped]
         public PersonAssignmentState AssignState { get; set; }
     }
-
-    public class FixedVersion : BaseEntity<Guid>
-    {
-        public FixedVersion()
-        {
-
-        }
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-    }
-
-    public class AffectedVersion : BaseEntity<Guid>
-    {
-        public AffectedVersion()
-        {
-
-        }
-
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-
-    }
 }

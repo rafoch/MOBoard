@@ -26,7 +26,12 @@ namespace MOBoard.Issues.Write.Domain
             CreatorId = creatorId;
         }
 
-        private Issue(string name, Guid creatorId, string description, Guid projectId, IssuePriorityLevel priorityLevel)
+        private Issue(
+            string name, 
+            Guid creatorId, 
+            string description, 
+            Guid projectId, 
+            IssuePriorityLevel priorityLevel)
         {
             Name = name;
             CreatorId = creatorId;
@@ -39,10 +44,14 @@ namespace MOBoard.Issues.Write.Domain
             IssueComments = new HashSet<IssueComment>();
         }
 
-        public static Issue Create(string name, Guid creatorId, string description, Guid projectId, IssuePriorityLevel priorityLevel)
-        {
-            return new Issue(name, creatorId, description, projectId, priorityLevel);
-        }
+        public static Issue Create(
+            string name, 
+            Guid creatorId, 
+            string description, 
+            Guid projectId, 
+            IssuePriorityLevel priorityLevel)
+                => new Issue(name, creatorId, description, projectId, priorityLevel);
+        
 
         [Required]
         public string Name { get; private set; }
@@ -87,29 +96,5 @@ namespace MOBoard.Issues.Write.Domain
             Name = command.Name;
             Description = command.Description;
         }
-    }
-
-    public class FixedVersion : BaseEntity<Guid>
-    {
-        public FixedVersion()
-        {
-            
-        }
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-
-    }
-
-    public class AffectedVersion : BaseEntity<Guid>
-    {
-        public AffectedVersion()
-        {
-            
-        }
-
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
     }
 }

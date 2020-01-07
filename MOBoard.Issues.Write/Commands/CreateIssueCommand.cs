@@ -6,7 +6,12 @@ namespace MOBoard.Issues.Write.Commands
 {
     public class CreateIssueCommand : IAuthorizedCommand
     {
-        public CreateIssueCommand(string name, string description, Guid projectId, string projectAlias, IssuePriorityLevel issuePriorityLevel)
+        public CreateIssueCommand(
+            string name, 
+            string description, 
+            Guid projectId, 
+            string projectAlias, 
+            IssuePriorityLevel issuePriorityLevel)
         {
             Name = name;
             Description = description;
