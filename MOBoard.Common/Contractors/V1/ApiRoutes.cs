@@ -31,6 +31,8 @@
             public const string Get = IssueBase + "{id}";
             public const string AddComment = Get + "/comment/add";
             public const string RemoveComment = Get + "/comment/{commentId}/remove";
+            public const string RegisterWorklog = Get + "/worklog";
+            public const string RemoveWorklog = Get + "/worklog/{worklogId}";
         }
 
         public static class Project

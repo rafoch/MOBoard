@@ -14,6 +14,7 @@ namespace MOBoard.Common.Contractors.V1.Issue
         public int IssueNumber { get; set; }
         public string IssueFullNumber { get; set; }
         public IEnumerable<IssueCommentDto> IssueComments { get; set; }
+        public int LoggedTime { get; set; }
     }
 
     public class IssueHistoryDto

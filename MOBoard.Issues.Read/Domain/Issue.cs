@@ -32,6 +32,7 @@ namespace MOBoard.Issues.Read.Domain
         public string IssueFullNumber { get; private set; }
         public Guid? AssignedPersonId { get; set; }
         public FixedVersion FixedVersion { get; private set; }
+        public ISet<IssueWorklog> IssueWorklogs { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }
         public ISet<AffectedVersion> AffectedVersions { get; private set; }
         public ISet<IssueComment> IssueComments { get; private set; }
@@ -61,5 +62,31 @@ namespace MOBoard.Issues.Read.Domain
         public Issue Issue { get; set; }
         public Guid IssueId { get; set; }
 
+    }
+
+    public class IssueWorklog : BaseEntity<Guid>
+    {
+        public IssueWorklog()
+        {
+
+        }
+
+        public IssueWorklog(
+            int hours,
+            int minutes,
+            Guid applicationUserId,
+            Issue issue)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            ApplicationUserId = applicationUserId;
+            Issue = issue;
+        }
+
+        public int Hours { get; private set; }
+        public int Minutes { get; private set; }
+        public Guid ApplicationUserId { get; private set; }
+        public Issue Issue { get; private set; }
+        public Guid IssueId { get; private set; }
     }
 }

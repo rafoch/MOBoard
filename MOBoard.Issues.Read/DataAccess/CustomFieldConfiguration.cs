@@ -16,6 +16,7 @@ namespace MOBoard.Issues.Read.DataAccess
             modelBuilder.HasMany(i => i.IssueHistories).WithOne(ih => ih.Issue).HasForeignKey(i => i.IssueId);
             modelBuilder.HasMany(i => i.AffectedVersions).WithOne(ih => ih.Issue);
             modelBuilder.HasMany(i => i.IssueComments).WithOne(ih => ih.Issue);
+            modelBuilder.HasMany(i => i.IssueWorklogs).WithOne(ih => ih.Issue).HasForeignKey(h => h.IssueId);
 
         }
     }
