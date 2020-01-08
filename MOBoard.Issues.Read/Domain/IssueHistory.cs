@@ -14,5 +14,6 @@ namespace MOBoard.Issues.Read.Domain
         public Guid UserId { get; private set; }
         public ActionType ActionType { get; private set; }
         public Issue Issue { get; set; }
+        public Guid IssueId { get; set; }
     }
 }

@@ -13,9 +13,17 @@ namespace MOBoard.Issues.Write.DataAccess
             modelBuilder.HasOne(i => i.FixedVersion)
                 .WithOne(version => version.Issue)
                 .HasForeignKey<FixedVersion>(i => i.IssueId);
-            modelBuilder.HasMany(i => i.IssueHistories).WithOne(h => h.Issue);
-            modelBuilder.HasMany(i => i.AffectedVersions).WithOne(h => h.Issue);
-            modelBuilder.HasMany(i => i.IssueComments).WithOne(h => h.Issue);
+        }
+    }
+
+    internal class IssueHistoryConfiguration : IEntityTypeConfiguration<IssueHistory>
+    {
+        public void Configure(EntityTypeBuilder<IssueHistory> builder)
+        {
+            builder.ToTable("IssueHistory", "Issue");
+            builder.Property(p => p.ActionType);
+            builder.Property(p => p.UserId);
+            builder.Property(p => p.IssueId);
         }
     }
 }
