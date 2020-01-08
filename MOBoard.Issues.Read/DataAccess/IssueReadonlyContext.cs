@@ -12,6 +12,8 @@ namespace MOBoard.Issues.Read.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomFieldConfiguration());
+            modelBuilder.ApplyConfiguration(new IssueHistoryConfiguration());
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Issue> Issues { get; set; }

@@ -39,6 +39,15 @@ namespace MOBoard.Issues.Read.Query
                             ChangeUserId = ih.UserId,
                             ActionType = ih.ActionType.ToString()
                         }),
+                    IssueComments = x.IssueComments
+                        .Where(ic => ic.RemovedAt == null)
+                        .OrderByDescending(ic => ic.CreatedAt)
+                        .Select(ic => new IssueCommentDto
+                        {
+                            CreatedAt = ic.CreatedAt,
+                            CreatorId = ic.CreatorId,
+                            Text = ic.Text
+                        }),
                     LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes % 60))
                 }).FirstOrDefaultAsync();
             return issue;

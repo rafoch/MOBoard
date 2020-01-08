@@ -98,18 +98,32 @@ namespace MOBoard.Issues.Write.Domain
             var issueWorklog = IssueWorklogs.First(worklog => worklog.Id == id);
             issueWorklog.Remove();
         }
+        
+        public void AddComment(string text, Guid creatorId)
+        {
+            IssueComments.Add(IssueComment.Create(text, creatorId, this));
+        }
+
+        public void RemoveComment(Guid commentId)
+        {
+            var issueComment = IssueComments.SingleOrDefault(comment => comment.Id == commentId);
+            if (issueComment != null)
+            {
+                issueComment.Remove();
+            }
+        }
     }
 
     public class IssueWorklog : BaseEntity<Guid>
     {
         public IssueWorklog()
         {
-            
+
         }
 
         public IssueWorklog(
-            int hours, 
-            int minutes, 
+            int hours,
+            int minutes,
             Guid applicationUserId,
             Issue issue)
         {
@@ -124,29 +138,5 @@ namespace MOBoard.Issues.Write.Domain
         public Guid ApplicationUserId { get; private set; }
         public Issue Issue { get; private set; }
         public Guid IssueId { get; private set; }
-    }
-
-    public class FixedVersion : BaseEntity<Guid>
-    {
-        public FixedVersion()
-        {
-            
-        }
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-
-    }
-
-    public class AffectedVersion : BaseEntity<Guid>
-    {
-        public AffectedVersion()
-        {
-            
-        }
-
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
     }
 }
