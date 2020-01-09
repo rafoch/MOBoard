@@ -4,14 +4,16 @@ using MOBoard.Issues.Write.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MOBoard.Issues.Write.Migrations
 {
     [DbContext(typeof(IssueWriteContext))]
-    partial class IssueWriteContextModelSnapshot : ModelSnapshot
+    [Migration("20200107191117_AddWorklogTable")]
+    partial class AddWorklogTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,9 +113,6 @@ namespace MOBoard.Issues.Write.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
@@ -202,7 +201,7 @@ namespace MOBoard.Issues.Write.Migrations
                     b.Property<int>("Hours")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("IssueId")
+                    b.Property<Guid?>("IssueId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Minutes")
@@ -257,9 +256,7 @@ namespace MOBoard.Issues.Write.Migrations
                 {
                     b.HasOne("MOBoard.Issues.Write.Domain.Issue", "Issue")
                         .WithMany("IssueWorklogs")
-                        .HasForeignKey("IssueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IssueId");
                 });
 #pragma warning restore 612, 618
         }

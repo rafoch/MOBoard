@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using MOBoard.Common.DomainTypes;
 using MOBoard.Common.Services;
 using MOBoard.Common.Types;
@@ -64,6 +65,7 @@ namespace MOBoard.Issues.Write.Domain
         public Guid? AssignedPersonId { get; private set; }
         public IssuePriorityLevel Priority { get; private set; }
         public FixedVersion FixedVersion { get; private set; }
+        public ISet<IssueWorklog> IssueWorklogs { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }
         public ISet<AffectedVersion> AffectedVersions { get; private set; }
         public ISet<IssueComment> IssueComments { get; private set; }
@@ -96,5 +98,57 @@ namespace MOBoard.Issues.Write.Domain
             Name = command.Name;
             Description = command.Description;
         }
+
+        public void RegisterWorklog(int hours, int minutes, Guid userId)
+        {
+            var issueWorklog = new IssueWorklog(hours, minutes, userId, this);
+            IssueWorklogs.Add(issueWorklog);
+        }
+
+        public void RemoveWorklog(Guid id)
+        {
+            var issueWorklog = IssueWorklogs.First(worklog => worklog.Id == id);
+            issueWorklog.Remove();
+        }
+        
+        public void AddComment(string text, Guid creatorId)
+        {
+            IssueComments.Add(IssueComment.Create(text, creatorId, this));
+        }
+
+        public void RemoveComment(Guid commentId)
+        {
+            var issueComment = IssueComments.SingleOrDefault(comment => comment.Id == commentId);
+            if (issueComment != null)
+            {
+                issueComment.Remove();
+            }
+        }
+    }
+
+    public class IssueWorklog : BaseEntity<Guid>
+    {
+        public IssueWorklog()
+        {
+
+        }
+
+        public IssueWorklog(
+            int hours,
+            int minutes,
+            Guid applicationUserId,
+            Issue issue)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            ApplicationUserId = applicationUserId;
+            Issue = issue;
+        }
+
+        public int Hours { get; private set; }
+        public int Minutes { get; private set; }
+        public Guid ApplicationUserId { get; private set; }
+        public Issue Issue { get; private set; }
+        public Guid IssueId { get; private set; }
     }
 }
