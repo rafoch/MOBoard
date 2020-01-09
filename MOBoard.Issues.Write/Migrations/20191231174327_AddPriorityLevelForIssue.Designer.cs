@@ -4,14 +4,16 @@ using MOBoard.Issues.Write.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MOBoard.Issues.Write.Migrations
 {
     [DbContext(typeof(IssueWriteContext))]
-    partial class IssueWriteContextModelSnapshot : ModelSnapshot
+    [Migration("20191231174327_AddPriorityLevelForIssue")]
+    partial class AddPriorityLevelForIssue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,40 +189,6 @@ namespace MOBoard.Issues.Write.Migrations
                     b.ToTable("IssueHistories");
                 });
 
-            modelBuilder.Entity("MOBoard.Issues.Write.Domain.IssueWorklog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ApplicationUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Hours")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("IssueId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Minutes")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("RemovedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IssueId");
-
-                    b.ToTable("IssueWorklog");
-                });
-
             modelBuilder.Entity("MOBoard.Issues.Write.Domain.AffectedVersion", b =>
                 {
                     b.HasOne("MOBoard.Issues.Write.Domain.Issue", "Issue")
@@ -251,15 +219,6 @@ namespace MOBoard.Issues.Write.Migrations
                     b.HasOne("MOBoard.Issues.Write.Domain.Issue", "Issue")
                         .WithMany("IssueHistories")
                         .HasForeignKey("IssueId");
-                });
-
-            modelBuilder.Entity("MOBoard.Issues.Write.Domain.IssueWorklog", b =>
-                {
-                    b.HasOne("MOBoard.Issues.Write.Domain.Issue", "Issue")
-                        .WithMany("IssueWorklogs")
-                        .HasForeignKey("IssueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MOBoard.Common.DomainTypes;
 using MOBoard.Common.Types;
 using MOBoard.Issues.Read.Domain.State;
 
@@ -30,6 +31,7 @@ namespace MOBoard.Issues.Read.Domain
         public Guid ProjectId { get; private set; }
         public int IssueNumber { get; private set; }
         public string IssueFullNumber { get; private set; }
+        public IssuePriorityLevel Priority { get; private set; }
         public Guid? AssignedPersonId { get; set; }
         public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueWorklog> IssueWorklogs { get; private set; }
@@ -39,31 +41,6 @@ namespace MOBoard.Issues.Read.Domain
         [NotMapped]
         public PersonAssignmentState AssignState { get; set; }
     }
-
-    public class FixedVersion : BaseEntity<Guid>
-    {
-        public FixedVersion()
-        {
-
-        }
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-    }
-
-    public class AffectedVersion : BaseEntity<Guid>
-    {
-        public AffectedVersion()
-        {
-
-        }
-
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-
-    }
-
     public class IssueWorklog : BaseEntity<Guid>
     {
         public IssueWorklog()

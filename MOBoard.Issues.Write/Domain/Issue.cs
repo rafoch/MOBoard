@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using MOBoard.Common.DomainTypes;
 using MOBoard.Common.Services;
 using MOBoard.Common.Types;
 using MOBoard.Issues.Write.Commands;
@@ -26,22 +27,32 @@ namespace MOBoard.Issues.Write.Domain
             CreatorId = creatorId;
         }
 
-        private Issue(string name, Guid creatorId, string description, Guid projectId)
+        private Issue(
+            string name, 
+            Guid creatorId, 
+            string description, 
+            Guid projectId, 
+            IssuePriorityLevel priorityLevel)
         {
             Name = name;
             CreatorId = creatorId;
             Description = description;
             IssueHistories = _issueHistories;
             ProjectId = projectId;
+            Priority = priorityLevel;
             AssignState = new UnassignPersonPersonAssignmentState();
             IssueHistories.Add(new IssueHistory(creatorId, ActionType.Created));
             IssueComments = new HashSet<IssueComment>();
         }
 
-        public static Issue Create(string name, Guid creatorId, string description, Guid projectId)
-        {
-            return new Issue(name, creatorId, description, projectId);
-        }
+        public static Issue Create(
+            string name, 
+            Guid creatorId, 
+            string description, 
+            Guid projectId, 
+            IssuePriorityLevel priorityLevel)
+                => new Issue(name, creatorId, description, projectId, priorityLevel);
+        
 
         [Required]
         public string Name { get; private set; }
@@ -51,7 +62,8 @@ namespace MOBoard.Issues.Write.Domain
         public Guid ProjectId { get; private set; }
         public int IssueNumber { get; private set; }
         public string IssueFullNumber { get; private set; }
-        public Guid? AssignedPersonId { get; set; }
+        public Guid? AssignedPersonId { get; private set; }
+        public IssuePriorityLevel Priority { get; private set; }
         public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueWorklog> IssueWorklogs { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }

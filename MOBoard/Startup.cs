@@ -46,7 +46,7 @@ namespace MOBoard.Web
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(
-                options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Latest)
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             var tokenValidationParameters = TokenValidationParametersProvider.Get();
 
