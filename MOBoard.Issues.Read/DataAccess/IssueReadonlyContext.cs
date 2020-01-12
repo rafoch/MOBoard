@@ -12,10 +12,13 @@ namespace MOBoard.Issues.Read.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomFieldConfiguration());
+            modelBuilder.ApplyConfiguration(new IssueHistoryConfiguration());
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Issue> Issues { get; set; }
         public DbSet<IssueHistory> IssueHistories { get; set; }
         public DbSet<IssueComment> IssueComments { get; set; }
+        public DbSet<IssueWorklog> IssueWorklogs { get; set; }
     }
 }

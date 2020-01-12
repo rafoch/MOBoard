@@ -114,6 +114,9 @@ namespace MOBoard.Issues.Write.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
@@ -190,6 +193,40 @@ namespace MOBoard.Issues.Write.Migrations
                     b.ToTable("IssueHistories");
                 });
 
+            modelBuilder.Entity("MOBoard.Issues.Write.Domain.IssueWorklog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ApplicationUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Hours")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("IssueId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Minutes")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RemovedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IssueId");
+
+                    b.ToTable("IssueWorklog");
+                });
+
             modelBuilder.Entity("MOBoard.Issues.Write.Domain.AffectedVersion", b =>
                 {
                     b.HasOne("MOBoard.Issues.Write.Domain.Issue", "Issue")
@@ -220,6 +257,15 @@ namespace MOBoard.Issues.Write.Migrations
                     b.HasOne("MOBoard.Issues.Write.Domain.Issue", "Issue")
                         .WithMany("IssueHistories")
                         .HasForeignKey("IssueId");
+                });
+
+            modelBuilder.Entity("MOBoard.Issues.Write.Domain.IssueWorklog", b =>
+                {
+                    b.HasOne("MOBoard.Issues.Write.Domain.Issue", "Issue")
+                        .WithMany("IssueWorklogs")
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

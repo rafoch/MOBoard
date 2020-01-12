@@ -1,8 +1,10 @@
-﻿using MOBoard.Common.DomainTypes;
+﻿using System;
+using MOBoard.Common.DomainTypes;
+using MOBoard.Common.Types;
 
 namespace MOBoard.Read.Project.Domain
 {
-    public class ProjectVersion
+    public class ProjectVersion : BaseEntity<Guid>
     {
         public string Version { get; private set; }
         public string Description { get; private set; }

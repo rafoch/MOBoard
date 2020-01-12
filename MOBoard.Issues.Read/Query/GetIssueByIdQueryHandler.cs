@@ -27,6 +27,7 @@ namespace MOBoard.Issues.Read.Query
                     Name = x.Name,
                     CreatedAt = x.CreatedAt,
                     ModifiedAt = x.ModifiedAt,
+                    Priority = x.Priority,
                     CreatorUserId = x.CreatorId,
                     IssueNumber = x.IssueNumber,
                     IssueFullNumber = x.IssueFullNumber,
@@ -38,7 +39,17 @@ namespace MOBoard.Issues.Read.Query
                             CreatedAt = ih.CreatedAt,
                             ChangeUserId = ih.UserId,
                             ActionType = ih.ActionType.ToString()
-                        })
+                        }),
+                    IssueComments = x.IssueComments
+                        .Where(ic => ic.RemovedAt == null)
+                        .OrderByDescending(ic => ic.CreatedAt)
+                        .Select(ic => new IssueCommentDto
+                        {
+                            CreatedAt = ic.CreatedAt,
+                            CreatorId = ic.CreatorId,
+                            Text = ic.Text
+                        }),
+                    LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes % 60))
                 }).FirstOrDefaultAsync();
             return issue;
         }

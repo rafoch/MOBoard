@@ -22,17 +22,18 @@ namespace MOBoard.Issues.Read.Query
 
         public async Task<IList<IssueDto>> HandleAsync(GetIssuesQuery query)
         {
-            return await _context.Issues
+            return await _context.Issues.Include(x => x.IssueHistories).AsQueryable()
                 .Where(i => i.RemovedAt == null && i.ProjectId == query.ProjectId)
             .Select(x => new IssueDto
             {
                 Name = x.Name,
                 CreatedAt = x.CreatedAt,
                 ModifiedAt = x.ModifiedAt,
+                Priority = x.Priority,
                 CreatorUserId = x.CreatorId,
                 IssueNumber = x.IssueNumber,
                 IssueFullNumber = x.IssueFullNumber,
-                IssueHistories = x.IssueHistories
+                IssueHistories = x.IssueHistories.AsQueryable()
                     .Where(ih => ih.RemovedAt == null)
                     .OrderByDescending(ih => ih.CreatedAt)
                     .Select(ih => new IssueHistoryDto
@@ -40,7 +41,17 @@ namespace MOBoard.Issues.Read.Query
                         CreatedAt = ih.CreatedAt,
                         ChangeUserId = ih.UserId,
                         ActionType = ih.ActionType.ToString()
-                    })
+                    }),
+                IssueComments = x.IssueComments
+                    .Where(ic => ic.RemovedAt == null)
+                    .OrderByDescending(ic => ic.CreatedAt)
+                    .Select(ic => new IssueCommentDto
+                    {
+                        CreatedAt = ic.CreatedAt,
+                        CreatorId = ic.CreatorId,
+                        Text = ic.Text
+                    }),
+                LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes % 60))
             }).ToListAsync();
         }
     }

@@ -18,6 +18,7 @@ namespace MOBoard.Issues.Write.DataAccess
         {
             modelBuilder.HasDefaultSchema("Issue");
             modelBuilder.ApplyConfiguration(new IssueConfiguration());
+            modelBuilder.ApplyConfiguration(new IssueHistoryConfiguration());
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -29,5 +30,7 @@ namespace MOBoard.Issues.Write.DataAccess
         public DbSet<Issue> Issues { get; set; }
         public DbSet<IssueHistory> IssueHistories { get; set; }
         public DbSet<IssueComment> IssueComments { get; set; }
+        public DbSet<IssueWorklog> IssueWorklogs { get; set; }
+
     }
 }

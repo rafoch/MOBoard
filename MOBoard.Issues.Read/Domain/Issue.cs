@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MOBoard.Common.DomainTypes;
 using MOBoard.Common.Types;
 using MOBoard.Issues.Read.Domain.State;
 
@@ -32,37 +33,39 @@ namespace MOBoard.Issues.Read.Domain
         public string IssueFullNumber { get; private set; }
         public string Reproduction { get; private set; }
         public string AcceptanceTests { get; private set; }
-
+        public IssuePriorityLevel Priority { get; private set; }
         public Guid? AssignedPersonId { get; set; }
         public FixedVersion FixedVersion { get; private set; }
+        public ISet<IssueWorklog> IssueWorklogs { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }
         public ISet<AffectedVersion> AffectedVersions { get; private set; }
         public ISet<IssueComment> IssueComments { get; private set; }
         [NotMapped]
         public PersonAssignmentState AssignState { get; set; }
     }
-
-    public class FixedVersion : BaseEntity<Guid>
+    public class IssueWorklog : BaseEntity<Guid>
     {
-        public FixedVersion()
-        {
-
-        }
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-    }
-
-    public class AffectedVersion : BaseEntity<Guid>
-    {
-        public AffectedVersion()
+        public IssueWorklog()
         {
 
         }
 
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
+        public IssueWorklog(
+            int hours,
+            int minutes,
+            Guid applicationUserId,
+            Issue issue)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            ApplicationUserId = applicationUserId;
+            Issue = issue;
+        }
 
+        public int Hours { get; private set; }
+        public int Minutes { get; private set; }
+        public Guid ApplicationUserId { get; private set; }
+        public Issue Issue { get; private set; }
+        public Guid IssueId { get; private set; }
     }
 }

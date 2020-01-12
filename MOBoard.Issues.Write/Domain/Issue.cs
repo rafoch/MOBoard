@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using MOBoard.Common.DomainTypes;
 using MOBoard.Common.Services;
 using MOBoard.Common.Types;
 using MOBoard.Issues.Write.Commands;
@@ -27,6 +29,12 @@ namespace MOBoard.Issues.Write.Domain
 
         private Issue(string name, Guid creatorId, string description,
             Guid projectId, string reproduction, string acceptanceTests)
+        private Issue(
+            string name, 
+            Guid creatorId, 
+            string description, 
+            Guid projectId, 
+            IssuePriorityLevel priorityLevel)
         {
             Name = name;
             CreatorId = creatorId;
@@ -35,6 +43,7 @@ namespace MOBoard.Issues.Write.Domain
             AcceptanceTests = acceptanceTests;
             IssueHistories = _issueHistories;
             ProjectId = projectId;
+            Priority = priorityLevel;
             AssignState = new UnassignPersonPersonAssignmentState();
             IssueHistories.Add(new IssueHistory(creatorId, ActionType.Created));
             IssueComments = new HashSet<IssueComment>();
@@ -45,7 +54,13 @@ namespace MOBoard.Issues.Write.Domain
         {
             return new Issue(name, creatorId, description, projectId, reproduction, acceptanceTests);
         }
-
+        public static Issue Create(
+            string name, 
+            Guid creatorId, 
+            string description, 
+            Guid projectId, 
+            IssuePriorityLevel priorityLevel)
+                => new Issue(name, creatorId, description, projectId, priorityLevel);
         [Required]
         public string Name { get; private set; }
         public DateTime? DueDate { get; private set; }
@@ -57,7 +72,10 @@ namespace MOBoard.Issues.Write.Domain
         public Guid? AssignedPersonId { get; set; }
         public string Reproduction { get; private set; }
         public string AcceptanceTests { get; private set; }
+        public Guid? AssignedPersonId { get; private set; }
+        public IssuePriorityLevel Priority { get; private set; }
         public FixedVersion FixedVersion { get; private set; }
+        public ISet<IssueWorklog> IssueWorklogs { get; private set; }
         public ISet<IssueHistory> IssueHistories { get; private set; }
         public ISet<AffectedVersion> AffectedVersions { get; private set; }
         public ISet<IssueComment> IssueComments { get; private set; }
@@ -90,29 +108,57 @@ namespace MOBoard.Issues.Write.Domain
             Name = command.Name;
             Description = command.Description;
         }
-    }
 
-    public class FixedVersion : BaseEntity<Guid>
-    {
-        public FixedVersion()
+        public void RegisterWorklog(int hours, int minutes, Guid userId)
         {
-            
-        }
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
-
-    }
-
-    public class AffectedVersion : BaseEntity<Guid>
-    {
-        public AffectedVersion()
-        {
-            
+            var issueWorklog = new IssueWorklog(hours, minutes, userId, this);
+            IssueWorklogs.Add(issueWorklog);
         }
 
-        public Guid VersionId { get; set; }
-        public Issue Issue { get; set; }
-        public Guid IssueId { get; set; }
+        public void RemoveWorklog(Guid id)
+        {
+            var issueWorklog = IssueWorklogs.First(worklog => worklog.Id == id);
+            issueWorklog.Remove();
+        }
+        
+        public void AddComment(string text, Guid creatorId)
+        {
+            IssueComments.Add(IssueComment.Create(text, creatorId, this));
+        }
+
+        public void RemoveComment(Guid commentId)
+        {
+            var issueComment = IssueComments.SingleOrDefault(comment => comment.Id == commentId);
+            if (issueComment != null)
+            {
+                issueComment.Remove();
+            }
+        }
+    }
+
+    public class IssueWorklog : BaseEntity<Guid>
+    {
+        public IssueWorklog()
+        {
+
+        }
+
+        public IssueWorklog(
+            int hours,
+            int minutes,
+            Guid applicationUserId,
+            Issue issue)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            ApplicationUserId = applicationUserId;
+            Issue = issue;
+        }
+
+        public int Hours { get; private set; }
+        public int Minutes { get; private set; }
+        public Guid ApplicationUserId { get; private set; }
+        public Issue Issue { get; private set; }
+        public Guid IssueId { get; private set; }
     }
 }

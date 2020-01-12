@@ -29,6 +29,7 @@ using MOBoard.Web.ContractorsFilters.V1.Auth;
 using MOBoard.Write.Project.DataAccess;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Filters;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MOBoard.Web
 {
@@ -45,7 +46,7 @@ namespace MOBoard.Web
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(
-                options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Latest)
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             var tokenValidationParameters = TokenValidationParametersProvider.Get();
 
@@ -99,7 +100,9 @@ namespace MOBoard.Web
                         {
                             Id = "Bearer",
                             Type = ReferenceType.SecurityScheme
-                        }
+                        },
+                        In = ParameterLocation.Header,
+                        Type = SecuritySchemeType.ApiKey
                     },  new List<string>()}
                 });
 
@@ -152,7 +155,17 @@ namespace MOBoard.Web
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSwagger();
+            app.UseSwagger(options => options.PreSerializeFilters.Add((document, request) =>
+            {
+                document.Servers = new List<OpenApiServer>
+                {
+                    new OpenApiServer
+                    {
+                        Url = $"{request.Scheme}://{request.Host.Value}",
+                        Description = "MOBoard Server",
+                    }
+                };
+            }));
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MOBoard");

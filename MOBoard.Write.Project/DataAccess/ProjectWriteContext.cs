@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MOBoard.Write.Project.Domain;
 
 namespace MOBoard.Write.Project.DataAccess
 {
@@ -21,7 +23,6 @@ namespace MOBoard.Write.Project.DataAccess
             var saveChangesAsync = await base.SaveChangesAsync(cancellationToken);
             return saveChangesAsync;
         }
-
         public DbSet<Domain.Project> Projects { get; set; }
         public DbSet<Domain.ProjectVersion> ProjectVersions{ get; set; }
     }
