@@ -27,13 +27,14 @@ namespace MOBoard.Issues.Write.Domain
             CreatorId = creatorId;
         }
 
-        private Issue(string name, Guid creatorId, string description,
-            Guid projectId, string reproduction, string acceptanceTests)
+        
         private Issue(
             string name, 
             Guid creatorId, 
             string description, 
             Guid projectId, 
+            string reproduction,
+            string acceptanceTests,
             IssuePriorityLevel priorityLevel)
         {
             Name = name;
@@ -50,17 +51,11 @@ namespace MOBoard.Issues.Write.Domain
         }
 
         public static Issue Create(string name, Guid creatorId, string description, 
-            Guid projectId, string reproduction, string acceptanceTests)
+            Guid projectId, string reproduction, string acceptanceTests, IssuePriorityLevel priorityLevel)
         {
-            return new Issue(name, creatorId, description, projectId, reproduction, acceptanceTests);
+            return new Issue(name, creatorId, description, projectId, reproduction, acceptanceTests, priorityLevel);
         }
-        public static Issue Create(
-            string name, 
-            Guid creatorId, 
-            string description, 
-            Guid projectId, 
-            IssuePriorityLevel priorityLevel)
-                => new Issue(name, creatorId, description, projectId, priorityLevel);
+        
         [Required]
         public string Name { get; private set; }
         public DateTime? DueDate { get; private set; }
@@ -72,7 +67,6 @@ namespace MOBoard.Issues.Write.Domain
         public Guid? AssignedPersonId { get; set; }
         public string Reproduction { get; private set; }
         public string AcceptanceTests { get; private set; }
-        public Guid? AssignedPersonId { get; private set; }
         public IssuePriorityLevel Priority { get; private set; }
         public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueWorklog> IssueWorklogs { get; private set; }

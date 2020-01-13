@@ -25,14 +25,8 @@ namespace MOBoard.Issues.Write.Handlers
             {
                 var issueCount = _context.Issues.Count(i => i.ProjectId == command.ProjectId);
                 var newIssue = Issue.Create(command.Name, command.UserId, command.Description,
-                    command.ProjectId, command.Reproduction, command.AcceptanceTests);
-                var newIssue = 
-                    Issue.Create(
-                        command.Name, 
-                        command.UserId, 
-                        command.Description, 
-                        command.ProjectId, 
-                        command.Priority);
+                    command.ProjectId, command.Reproduction, command.AcceptanceTests, command.Priority);
+                
                 newIssue.AddIssueNumber(issueCount, command.ProjectAlias);
                 _context.Issues.Add(newIssue);
                 await _context.SaveChangesAsync();
