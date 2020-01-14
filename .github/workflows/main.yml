@@ -1,5 +1,9 @@
+env:
+ uses: ncipollo/semantic-version-action@v1
+
 name: Semantic Version
  
+
 on: 
   push:
     tags:
