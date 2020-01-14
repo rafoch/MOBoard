@@ -1,6 +1,4 @@
 name: Semantic Version
-  
-  uses: ncipollo/semantic-version-action@v1
  
 on: 
   push:
