@@ -33,6 +33,7 @@
             public const string RemoveComment = Get + "/comment/{commentId}/remove";
             public const string RegisterWorklog = Get + "/worklog";
             public const string RemoveWorklog = Get + "/worklog/{worklogId}";
+            public const string Search = IssueBase + "search";
         }
 
         public static class Project

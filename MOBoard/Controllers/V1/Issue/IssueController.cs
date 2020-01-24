@@ -38,6 +38,16 @@ namespace MOBoard.Web.Controllers.V1.Issue
             return Ok();
         }
 
+        [HttpGet(ApiRoutes.Issue.Search)]
+        public async Task<IActionResult> Search([FromQuery] string text)
+        {
+            await AuthorizedQueryAsync(new GetIssuesByFullTextSearchAuthorizedQuery
+            {
+                Text = text
+            });
+            return Ok();
+        }
+
         [HttpGet(ApiRoutes.Issue.All)]
         public async Task<IActionResult> GetAllIssues([FromQuery] Guid projectId)
         {
