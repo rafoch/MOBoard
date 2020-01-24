@@ -22,7 +22,9 @@ namespace MOBoard.Issues.Read.Query
 
         public async Task<IList<IssueDto>> HandleAsync(GetIssuesQuery query)
         {
-            return await _context.Issues.Include(x => x.IssueHistories).AsQueryable()
+            return await _context.Issues.Include(x => x.IssueHistories)
+                .Include(i=> i.IssueWorklogs)
+                .Include(i=> i.IssueComments).AsQueryable()
                 .Where(i => i.RemovedAt == null && i.ProjectId == query.ProjectId)
             .Select(x => new IssueDto
             {
@@ -51,7 +53,7 @@ namespace MOBoard.Issues.Read.Query
                         CreatorId = ic.CreatorId,
                         Text = ic.Text
                     }),
-                LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes % 60))
+                LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes / 60m))
             }).ToListAsync();
         }
     }

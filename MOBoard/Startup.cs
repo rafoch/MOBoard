@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MOBoard.Auth.Users.Read.DataAccess;
 using MOBoard.Auth.Users.Write.DataAccess;
@@ -191,7 +192,11 @@ namespace MOBoard.Web
             builder.Populate(services);
 
             RegisterAllTypesByConvention(builder);
-
+            builder.RegisterInstance(new LoggerFactory())
+                .As<ILoggerFactory>();
+            builder.RegisterGeneric(typeof(Logger<>))
+                .As(typeof(ILogger<>))
+                .SingleInstance();
             builder.AddDispatchers();
 
             var container = builder.Build();

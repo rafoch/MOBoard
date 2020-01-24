@@ -18,7 +18,7 @@ namespace MOBoard.Issues.Write.Handlers
         {
             _context = context;
         }
-
+        
         public async Task HandleAsync(CreateIssueCommand command)
         {
             if (command.UserId != Guid.Empty && command.ProjectId != Guid.Empty)
@@ -26,7 +26,7 @@ namespace MOBoard.Issues.Write.Handlers
                 var issueCount = _context.Issues.Count(i => i.ProjectId == command.ProjectId);
                 var newIssue = 
                     Issue.Create(
-                        command.Name, 
+                        command.Name,
                         command.UserId, 
                         command.Description, 
                         command.ProjectId, 

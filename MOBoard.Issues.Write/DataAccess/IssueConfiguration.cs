@@ -31,4 +31,32 @@ namespace MOBoard.Issues.Write.DataAccess
             builder.Property(p => p.IssueId);
         }
     }
+
+    internal class IssueCommentsConfiguration : IEntityTypeConfiguration<IssueComment>
+    {
+        public void Configure(EntityTypeBuilder<IssueComment> builder)
+        {
+            builder.ToTable("IssueComments", "Issue");
+            builder.Property(ic => ic.Text);
+            builder.Property(ic => ic.CreatorId);
+            builder.HasOne(ic => ic.Issue)
+                .WithMany(i => i.IssueComments)
+                .HasForeignKey(ic => ic.IssueId);
+        }
+    }
+
+    internal class IssueWorklogConfiguration : IEntityTypeConfiguration<IssueWorklog>
+    {
+        public void Configure(EntityTypeBuilder<IssueWorklog> builder)
+        {
+            builder.ToTable("IssueWorklog", "Issue");
+            builder.Property(iw => iw.ApplicationUserId);
+            builder.Property(iw => iw.Hours);
+            builder.Property(iw => iw.Minutes);
+            builder.Property(iw => iw.ApplicationUserId);
+            builder.HasOne(iw => iw.Issue)
+                .WithMany(i => i.IssueWorklogs)
+                .HasForeignKey(iw => iw.IssueId);
+        }
+    }
 }

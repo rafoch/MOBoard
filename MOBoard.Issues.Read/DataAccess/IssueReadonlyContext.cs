@@ -13,6 +13,8 @@ namespace MOBoard.Issues.Read.DataAccess
         {
             modelBuilder.ApplyConfiguration(new CustomFieldConfiguration());
             modelBuilder.ApplyConfiguration(new IssueHistoryConfiguration());
+            modelBuilder.ApplyConfiguration(new IssueCommentsConfiguration());
+            modelBuilder.ApplyConfiguration(new IssueWorklogConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

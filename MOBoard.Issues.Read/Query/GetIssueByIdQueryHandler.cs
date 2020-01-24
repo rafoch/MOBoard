@@ -49,7 +49,7 @@ namespace MOBoard.Issues.Read.Query
                             CreatorId = ic.CreatorId,
                             Text = ic.Text
                         }),
-                    LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes % 60))
+                    LoggedTime = x.IssueWorklogs.Sum(worklog => worklog.Hours + (worklog.Minutes / 60m))
                 }).FirstOrDefaultAsync();
             return issue;
         }

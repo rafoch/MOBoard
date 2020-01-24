@@ -27,11 +27,9 @@ namespace MOBoard.Tests.Commands
                 createCommand.Description,
                 createCommand.ProjectId,
                 createCommand.Priority);
-
             //act
             issue.CreatedAt.Should().NotBe(DateTime.MaxValue);
 
         }
-
     }
 }

@@ -45,7 +45,7 @@ namespace MOBoard.Web.Controllers.V1.Issue
         }
 
         [HttpGet(ApiRoutes.Issue.Get)]
-        public async Task<ActionResult<IssueDto>> GetIssue([FromQuery] Guid id)
+        public async Task<ActionResult<IssueDto>> GetIssue([FromRoute] Guid id)
         {
             return Single(await QueryAsync(new GetIssueByIdQuery(id)));
         }
