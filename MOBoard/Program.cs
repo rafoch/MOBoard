@@ -8,20 +8,10 @@ namespace MOBoard.Web
 {
     public class Program
     {
-        public static async Task Main(string[] args)
-        {
-            var webHost = CreateWebHostBuilder(args).Build();
-            await webHost.RunAsync();
-        }
+        public static async Task Main(string[] args) => await CreateWebHostBuilder(args).Build().RunAsync();
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    logging.AddConsole();
-                    logging.AddDebug();
-                    logging.AddEventSourceLogger();
-                })
                 .UseStartup<Startup>();
     }
 }

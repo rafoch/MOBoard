@@ -41,11 +41,11 @@ namespace MOBoard.Web.Controllers.V1.Issue
         [HttpGet(ApiRoutes.Issue.Search)]
         public async Task<IActionResult> Search([FromQuery] string text)
         {
-            await AuthorizedQueryAsync(new GetIssuesByFullTextSearchAuthorizedQuery
+            var authorizedQueryAsync = await AuthorizedQueryAsync(new GetIssuesByFullTextSearchAuthorizedQuery
             {
                 Text = text
             });
-            return Ok();
+            return Collection(authorizedQueryAsync);
         }
 
         [HttpGet(ApiRoutes.Issue.All)]
