@@ -17,7 +17,6 @@ namespace MOBoard.Issues.Write.Domain
 
         public Issue()
         {
-
         }
 
         public Issue(string name, DateTime? dueDate, Guid creatorId)

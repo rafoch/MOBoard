@@ -26,12 +26,12 @@ namespace MOBoard.Tests.Commands
                 Guid.NewGuid(),
                 createCommand.Description,
                 createCommand.ProjectId,
+                createCommand.Reproduction,
+                createCommand.AcceptanceTests,
                 createCommand.Priority);
-
             //act
             issue.CreatedAt.Should().NotBe(DateTime.MaxValue);
 
         }
-
     }
 }

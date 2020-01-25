@@ -62,6 +62,16 @@ namespace MOBoard.Web.Controllers.Base
             return Ok(pagedResult);
         }
 
+        protected IActionResult Collection<T>(IList<T> pagedResult)
+        {
+            if (pagedResult == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(pagedResult);
+        }
+
         protected ActionResult<ImmutableList<T>> Collection<T>(ImmutableList<T> list)
         {
             if (list == null)

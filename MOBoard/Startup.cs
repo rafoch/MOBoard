@@ -191,7 +191,6 @@ namespace MOBoard.Web
             builder.Populate(services);
 
             RegisterAllTypesByConvention(builder);
-
             builder.AddDispatchers();
 
             var container = builder.Build();

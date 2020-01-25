@@ -23,5 +23,6 @@ namespace MOBoard.Issues.Write.Domain
         public string Text { get; private set; }
         public Guid CreatorId { get; private set; }
         public Issue Issue { get; private set; }
+        public Guid IssueId { get; set; }
     }
 }

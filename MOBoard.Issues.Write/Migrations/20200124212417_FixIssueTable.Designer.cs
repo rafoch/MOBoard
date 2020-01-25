@@ -4,14 +4,16 @@ using MOBoard.Issues.Write.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MOBoard.Issues.Write.Migrations
 {
     [DbContext(typeof(IssueWriteContext))]
-    partial class IssueWriteContextModelSnapshot : ModelSnapshot
+    [Migration("20200124212417_FixIssueTable")]
+    partial class FixIssueTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,9 +85,6 @@ namespace MOBoard.Issues.Write.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AcceptanceTests")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid?>("AssignedPersonId")
                         .HasColumnType("uniqueidentifier");
 
@@ -122,9 +121,6 @@ namespace MOBoard.Issues.Write.Migrations
 
                     b.Property<DateTime?>("RemovedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Reproduction")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
