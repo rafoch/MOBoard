@@ -29,7 +29,9 @@ namespace MOBoard.Issues.Write.Handlers
                         command.Name,
                         command.UserId, 
                         command.Description, 
-                        command.ProjectId, 
+                        command.ProjectId,
+                        command.Reproduction,
+                        command.AcceptanceTests,
                         command.Priority);
                 newIssue.AddIssueNumber(issueCount, command.ProjectAlias);
                 _context.Issues.Add(newIssue);

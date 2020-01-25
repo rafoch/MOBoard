@@ -26,16 +26,21 @@ namespace MOBoard.Issues.Write.Domain
             CreatorId = creatorId;
         }
 
+        
         private Issue(
             string name, 
             Guid creatorId, 
             string description, 
             Guid projectId, 
+            string reproduction,
+            string acceptanceTests,
             IssuePriorityLevel priorityLevel)
         {
             Name = name;
             CreatorId = creatorId;
             Description = description;
+            Reproduction = reproduction;
+            AcceptanceTests = acceptanceTests;
             IssueHistories = _issueHistories;
             ProjectId = projectId;
             Priority = priorityLevel;
@@ -44,15 +49,12 @@ namespace MOBoard.Issues.Write.Domain
             IssueComments = new HashSet<IssueComment>();
         }
 
-        public static Issue Create(
-            string name, 
-            Guid creatorId, 
-            string description, 
-            Guid projectId, 
-            IssuePriorityLevel priorityLevel)
-                => new Issue(name, creatorId, description, projectId, priorityLevel);
+        public static Issue Create(string name, Guid creatorId, string description, 
+            Guid projectId, string reproduction, string acceptanceTests, IssuePriorityLevel priorityLevel)
+        {
+            return new Issue(name, creatorId, description, projectId, reproduction, acceptanceTests, priorityLevel);
+        }
         
-
         [Required]
         public string Name { get; private set; }
         public DateTime? DueDate { get; private set; }
@@ -61,7 +63,9 @@ namespace MOBoard.Issues.Write.Domain
         public Guid ProjectId { get; private set; }
         public int IssueNumber { get; private set; }
         public string IssueFullNumber { get; private set; }
-        public Guid? AssignedPersonId { get; private set; }
+        public Guid? AssignedPersonId { get; set; }
+        public string Reproduction { get; private set; }
+        public string AcceptanceTests { get; private set; }
         public IssuePriorityLevel Priority { get; private set; }
         public FixedVersion FixedVersion { get; private set; }
         public ISet<IssueWorklog> IssueWorklogs { get; private set; }

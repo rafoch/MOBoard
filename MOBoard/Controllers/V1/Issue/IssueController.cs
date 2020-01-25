@@ -31,7 +31,9 @@ namespace MOBoard.Web.Controllers.V1.Issue
                 createIssueRequest.Name,
                 createIssueRequest.Description,
                 createIssueRequest.ProjectId,
-                projectAlias, 
+                createIssueRequest.Reproduction,
+                createIssueRequest.AcceptanceTests,
+                projectAlias,
                 createIssueRequest.Priority);
 
             await AuthorizedSendAsync(createIssueCommand);
