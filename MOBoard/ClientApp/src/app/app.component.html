@@ -1,4 +1,8 @@
-Test
+<label>username</label>
+<input type="text"/>
+<label>password</label>
+<input type="text"/>
 <button (click)="authorize()">Click me</button>
-{{response}}
+{{response.token}}
+{{response.refreshToken}}
 <router-outlet></router-outlet>

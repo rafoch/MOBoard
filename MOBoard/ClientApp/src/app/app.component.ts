@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { takeUntil, take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { AuthService, LoginRequest } from "./common/base-http-service.service";
 
 @Component({
@@ -9,6 +11,7 @@ import { AuthService, LoginRequest } from "./common/base-http-service.service";
 export class AppComponent {
   title = 'ClientApp';
   response: any = "empty";
+  private _onDestroy = new Subject<void>();
   private _authService: AuthService;
 
   constructor(authService: AuthService) {
@@ -16,18 +19,13 @@ export class AppComponent {
   }
 
   authorize() {
+    this._authService.test().subscribe(x => console.log(x));
     console.log("Trying Authorize");
-    console.log(this._authService);
     let loginRequest: LoginRequest = {
       username: 'zaq1@WSX',
       password: 'zaq1@WSX'
     };
-    console.log(loginRequest);
-    this._authService.login(loginRequest).subscribe(test => {
-      debugger;
-      console.log("Login successfully");
-      this.response = test;
-    });
+    let observable = this._authService.login(loginRequest).subscribe(test => this.response = test);
   }
 
 }
