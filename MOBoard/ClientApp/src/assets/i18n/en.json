@@ -1,4 +1,7 @@
 {
+  "lang": {
+    "changeLanguage": "Language"
+  },
   "loginComponent": {
     "username": "username",
     "password": "password"
