@@ -1,7 +1,9 @@
-<label>username</label>
-<input type="text"/>
-<label>password</label>
-<input type="text"/>
+<button (click)="pl()">PL</button>
+<button (click)="en()">EN</button>
+<label>{{ 'loginComponent.username' | translate }}</label>
+<input type="text" />
+<label>{{ 'loginComponent.password' | translate }}</label>
+<input type="text" />
 <button (click)="authorize()">Click me</button>
 {{response.token}}
 {{response.refreshToken}}
