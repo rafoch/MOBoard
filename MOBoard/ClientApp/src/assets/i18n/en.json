@@ -5,5 +5,8 @@
   "loginComponent": {
     "username": "username",
     "password": "password"
+  },
+  "iconTooltips": {
+    "cog": "Cog tooltip"
   }
 }

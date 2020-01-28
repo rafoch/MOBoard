@@ -1,9 +1,14 @@
-<div (click)="showLangaugeList()">{{'lang.changeLanguage' | translate}}</div>
-<div [hidden]="isShow" class="langs">
-  <div class="lang-picker" *ngFor="let lang of _langArray">
-    <div (click)="changeLang(lang.id)" class="lang-selector">
-      <div id="flag"></div>
-      <div id="country-name">{{lang.name}}</div>
+<div class="nav">
+  <div class="nav-container">
+    <div class="buttons">
+      <div class="add">
+        <app-nav-button [icon]="'cog'"></app-nav-button>
+      </div>
     </div>
+    dsa
+    <app-change-lang></app-change-lang>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
 </div>
