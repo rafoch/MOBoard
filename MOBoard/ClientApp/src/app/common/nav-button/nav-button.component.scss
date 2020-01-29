@@ -1,12 +1,42 @@
 .nav-button {
-
+  width: 50%;
+  height: 100%;
+  position: relative;
+  .icon{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 100%;
+    left: 0%;
+    width: 100%;
+    fa{
+      top:30%;
+      position: relative;
+    }
+  }
   .tooltip {
     background-color: rgba($color: #d3d3d3, $alpha: 0.3);
     display: none;
   }
 
-  &:hover .tooltip {
-    display: initial;
-
+  &:hover {
+    .icon{
+    -moz-border-radius-topleft: 50px;
+    -moz-border-radius-topright: 50px;
+    -moz-border-radius-bottomright: 50px;
+    -moz-border-radius-bottomleft: 50px;
+    -webkit-border-radius: 50% 50% 50% 50%;
+    border-radius:  50% 50% 50% 50%;
+    background-color: rgba($color: #64DD17, $alpha: 0.5);
+    }
+  .tooltip {
+    display: flex;
+    top:115%;
+    left: 65%;
+    position: absolute;
+    padding: 10px 10px 10px 10px;
+    z-index: 2;
+    background-color: rgba($color: #d3d3d3, $alpha: 1.0);
   }
+}
 }

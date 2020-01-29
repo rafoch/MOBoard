@@ -1,10 +1,23 @@
 .nav {
   height: 100%;
-
   .nav-container {
     height: 100%;
-    width: 150px;
+    width: 90px;
     float: left;
+    background-color: rgba($color: #CCFF90, $alpha: 1.0);
+    align-content: center;
+
+    .buttons{
+      text-align: center;
+
+
+      .button{
+        height: 46px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+        text-align: -webkit-center;
+      }
+    }
 
     .nav-button {
       height: 50px;

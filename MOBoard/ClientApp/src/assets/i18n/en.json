@@ -7,6 +7,7 @@
     "password": "password"
   },
   "iconTooltips": {
-    "cog": "Cog tooltip"
+    "plus": "Add",
+    "search": "Search"
   }
 }
