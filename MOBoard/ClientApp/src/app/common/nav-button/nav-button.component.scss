@@ -1,0 +1,14 @@
+.nav-button {
+
+  .tooltip {
+    background-color: rgba($color: #d3d3d3, $alpha: 0.3);
+    display: none;
+  }
+
+  &:hover .tooltip {
+    display: initial;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+}
