@@ -12,11 +12,15 @@ import { TokenInterceptor } from "./common/token-interceptor";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { ChangeLangComponent } from "./navbar/change-lang/change-lang.component";
 import { CommonComponentsModule } from "./common/common.module";
-import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LandingComponent } from "./landing/landing.component";
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, ChangeLangComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    ChangeLangComponent,
+    LandingComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
