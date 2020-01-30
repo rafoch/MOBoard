@@ -1,0 +1,12 @@
+<div class="login-container">
+  <div class="form">
+    <div class="input-container">
+      <label>{{'loginComponent.username' | translate}}</label><input type="text" [(ngModel)]="login" />
+    </div>
+    <div class="input-container">
+      <label>{{'loginComponent.password' | translate}}</label><input type="password" [(ngModel)]="password" />
+    </div>
+
+    <button (click)="authorize()">{{'loginComponent.login' | translate}}</button>
+  </div>
+</div>

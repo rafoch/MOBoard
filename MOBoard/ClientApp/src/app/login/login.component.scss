@@ -1,0 +1,19 @@
+.login-container {
+  width: 600px;
+  text-align: center;
+  position: relative;
+  height: 600px;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, 50%);
+
+  .form {
+    margin: 0;
+    height: 100%;
+    top: 50%;
+    transform: translate(0%, 50%);
+
+    .input-container {}
+  }
+}

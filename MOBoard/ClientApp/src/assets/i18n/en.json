@@ -1,6 +1,14 @@
 {
+  "lang": {
+    "changeLanguage": "Language"
+  },
   "loginComponent": {
     "username": "username",
-    "password": "password"
+    "password": "password",
+    "login": "Login"
+  },
+  "iconTooltips": {
+    "plus": "Add",
+    "search": "Search"
   }
 }
