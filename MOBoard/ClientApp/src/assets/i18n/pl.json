@@ -4,7 +4,8 @@
   },
   "loginComponent": {
     "username": "nazwa użytkownika",
-    "password": "hasło"
+    "password": "hasło",
+    "login": "Zaloguj"
   },
   "iconTooltips": {
     "plus": "Dodaj",
