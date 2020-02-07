@@ -37,7 +37,7 @@ jobs:
         node-version: 12.x
 
     - name: Run NPM
-      run: cd .\MOBoard\
+      run: cd MOBoard\
     - name: Run NPM
       run: npm install
     - name: Run NPM
