@@ -30,13 +30,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup Angular
+    - uses: actions/checkout@v1
+    - name: Setup Angular
       uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-    
-      - run: cd .\MOBoard\
-      - run: npm install
-      - run: npm install -g @angular/cli
+      with:
+        node-version: 12.x
+
+    - name: Run NPM
+    - run: cd .\MOBoard\
+    - run: npm install
+    - run: npm install -g @angular/cli
       run: ng build --prod
