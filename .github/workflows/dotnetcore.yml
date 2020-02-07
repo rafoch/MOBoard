@@ -36,8 +36,10 @@ jobs:
       with:
         node-version: 12.x
 
+    - name: list dir
+      run: ls
     - name: Move to angular directory
-      run: cd MOBoard\ClientApp\
+      run: cd MOBoard\MOBoard\ClientApp\
     - name: Run NPM install
       run: npm install
     - name: Install angular cli
