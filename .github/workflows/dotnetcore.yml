@@ -36,11 +36,11 @@ jobs:
       with:
         node-version: 12.x
 
-    - name: Run NPM
-      run: cd MOBoard\
-    - name: Run NPM
+    - name: Move to angular directory
+      run: cd MOBoard\ClientApp\
+    - name: Run NPM install
       run: npm install
-    - name: Run NPM
+    - name: Install angular cli
       run: npm install -g @angular/cli
-    - name: Run NPM
+    - name: Run ng build on production type
       run: ng build --prod
