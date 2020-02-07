@@ -18,8 +18,8 @@ namespace MOBoard.Issues.Write.Handlers
         public async Task HandleAsync(RegisterWorklogAuthorizedCommand command)
         {
             var issue = await _context.Issues
-                .Include(issue => issue.IssueWorklogs)
-                .FirstOrDefaultAsync(issue => issue.Id == command.IssueId);
+                .Include(i => i.IssueWorklogs)
+                .FirstOrDefaultAsync(i => i.Id == command.IssueId);
             issue.RegisterWorklog(command.Hours, command.Minutes, command.UserId);
             await _context.SaveChangesAsync();
         }
@@ -37,8 +37,8 @@ namespace MOBoard.Issues.Write.Handlers
         public async Task HandleAsync(RemoveWorklogAuthorizedCommand command)
         {
             var issue = await _context.Issues
-                .Include(issue => issue.IssueWorklogs)
-                .FirstOrDefaultAsync(issue => issue.Id == command.IssueId);
+                .Include(i => i.IssueWorklogs)
+                .FirstOrDefaultAsync(i => i.Id == command.IssueId);
             issue.RemoveWorklog(command.WorklogId);
             await _context.SaveChangesAsync();
         }

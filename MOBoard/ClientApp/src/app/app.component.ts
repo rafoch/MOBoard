@@ -23,8 +23,6 @@ export class AppComponent {
   }
 
   authorize() {
-    this._authService.test().subscribe(x => console.log(x));
-    console.log("Trying Authorize");
     let loginRequest: LoginRequest = {
       username: "zaq1@WSX",
       password: "zaq1@WSX"
@@ -35,10 +33,10 @@ export class AppComponent {
   }
 
   pl() {
-    this._translate.setDefaultLang("pl");
+    this._translate.use("pl");
   }
 
   en() {
-    this._translate.setDefaultLang("en");
+    this._translate.use("en");
   }
 }

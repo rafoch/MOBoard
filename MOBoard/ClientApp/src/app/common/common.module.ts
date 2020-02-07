@@ -1,3 +1,4 @@
+import { AuthGuardService } from './auth-guard.service';
 import {TooltipDirective} from "./directives/toolstrip.directive";
 import {NgModule} from "@angular/core";
 import {NavButtonComponent} from "./nav-button/nav-button.component";
@@ -21,7 +22,8 @@ import {HttpClient} from "@angular/common/http";
             }
         ),
     ],
-    exports: [NavButtonComponent, TranslateModule]
+    exports: [NavButtonComponent, TranslateModule],
+    providers: [AuthGuardService]
 })
 export class CommonComponentsModule {}
 

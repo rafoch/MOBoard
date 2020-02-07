@@ -26,7 +26,6 @@ export class AuthService {
 	}
 	isAuthorized(): Observable<boolean> {
 		let token = localStorage.getItem('token');
-		console.log('token ' + token);
 		if (token !== undefined && token !== '' && token !== null) {
 			return _observableOf(true);
 		}
@@ -84,6 +83,84 @@ export class AuthService {
 
 		return _observableOf<LoginResponse>(<any>null);
 	}
+}
+
+@Injectable()
+export class IssueService {
+	private http: HttpClient;
+	private baseUrl: string;
+
+	constructor(
+		@Inject(HttpClient) http: HttpClient,
+		@Optional()
+		@Inject(BASE_URL)
+		baseUrl?: string
+	) {
+		this.http = http;
+		this.baseUrl = baseUrl ? baseUrl : 'https://localhost:44300/api/v1/issue';
+  }
+  login(projectId : string): Observable<IssueDto[]> {
+		let url = this.baseUrl + '/all?projectId=';
+		if (projectId === '') {
+			return new Observable(<any>null);
+    }
+    url += projectId;
+		return this.http
+			.request('get', url)
+			.pipe(
+				_observableMergeMap((response: any) => {
+					return this.processLoginRequest(response);
+				})
+			)
+			.pipe(
+				_observableCatch((response: any) => {
+					if (response instanceof HttpResponseBase) {
+						try {
+							return this.processLoginRequest(<any>response);
+						} catch (e) {
+							return <Observable<IssueDto[]>>(<any>_observableThrow(e));
+						}
+					} else {
+						return <Observable<IssueDto[]>>(<any>_observableThrow(response));
+					}
+				})
+			);
+	}
+
+	processLoginRequest(response: any): Observable<IssueDto[]> {
+			return _observableOf(response as IssueDto[]);
+	}
+}
+
+export enum IssuePriorityLevel {
+  _0 = 0,
+  _1 = 1,
+  _2 = 2,
+  _3 = 3,
+  _4 = 4,
+}
+
+export interface IssueCommentDto {
+  createdAt?: Date;
+  creatorId?: string;
+  text?: string | undefined;
+}
+export interface IssueHistoryDto {
+  createdAt?: Date;
+  changeUserId?: string;
+  actionType?: string | undefined;
+}
+export interface IssueDto {
+  name?: string | undefined;
+    createdAt?: Date;
+    creatorUserId?: string;
+    modifiedAt?: Date;
+    issueHistories?: IssueHistoryDto[] | undefined;
+    issueNumber?: number;
+    issueFullNumber?: string | undefined;
+    issueComments?: IssueCommentDto[] | undefined;
+    loggedTime?: number;
+    priority?: IssuePriorityLevel;
 }
 
 export interface LoginRequest {

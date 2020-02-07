@@ -1,12 +1,24 @@
 <div class="login-container">
   <div class="form">
-    <div class="input-container">
-      <label>{{'loginComponent.username' | translate}}</label><input type="text" [(ngModel)]="login" />
-    </div>
-    <div class="input-container">
-      <label>{{'loginComponent.password' | translate}}</label><input type="password" [(ngModel)]="password" />
-    </div>
+    <div class="form-container">
+      <div class="input-container">
+        <div class="input-label">
+          <label>{{'loginComponent.username' | translate}}</label>
+        </div>
+        <div class="input-placeholder">
+          <input type="text" [(ngModel)]="login" />
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="input-label">
+          <label>{{'loginComponent.password' | translate}}</label>
+        </div>
+        <div class="input-placeholder">
+          <input type="password" [(ngModel)]="password" />
+        </div>
+      </div>
 
-    <button (click)="authorize()">{{'loginComponent.login' | translate}}</button>
+      <button class="button" (click)="authorize()">{{'loginComponent.login' | translate}}</button>
+    </div>
   </div>
 </div>

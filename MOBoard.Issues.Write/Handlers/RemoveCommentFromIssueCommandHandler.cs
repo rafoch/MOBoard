@@ -20,8 +20,8 @@ namespace MOBoard.Issues.Write.Handlers
         public async Task HandleAsync(RemoveCommentFromIssueCommand command)
         {
             var issue = await _context.Issues
-                .Include(issue => issue.IssueComments)
-                .FirstOrDefaultAsync(issue => issue.Id == command.IssueId);
+                .Include(i => i.IssueComments)
+                .FirstOrDefaultAsync(i => i.Id == command.IssueId);
             issue.RemoveComment(command.CommentId);
             await _context.SaveChangesAsync();
         }

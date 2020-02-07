@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
 	isAuthorized(): boolean {
 		let isUserAuthorized = false;
 		this._authService.isAuthorized().subscribe((authorized) => (isUserAuthorized = authorized));
-		console.log('is authorized' + isUserAuthorized);
 		return isUserAuthorized;
 	}
 }

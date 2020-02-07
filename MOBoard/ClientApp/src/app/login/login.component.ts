@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService, LoginResponse, LoginRequest } from '../common/base-http-service.service';
+import { Router } from '@angular/router';
 
 @Component({ selector: 'app-login', templateUrl: './login.component.html', styleUrls: [ './login.component.scss' ] })
 export class LoginComponent implements OnInit, OnDestroy {
@@ -7,7 +8,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	public password: string = 'zaq1@WSX';
 	public response: LoginResponse;
 	private _authService: AuthService;
-	constructor(private authService: AuthService) {
+	constructor(private authService: AuthService, private _router : Router) {
 		this._authService = authService;
 	}
 
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 			username: this.login,
 			password: this.password
 		};
-		this._authService.login(loginRequest).subscribe((test) => (this.response = test));
+    this._authService.login(loginRequest).subscribe((response) => (this.response = response));
+    this._router.navigate(['/issues']);
 	}
 
 	isAuthorized() {

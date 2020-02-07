@@ -19,10 +19,10 @@ namespace MOBoard.Issues.Write.Handlers
 
         public async Task HandleAsync(AddCommentToIssueCommand command)
         {
-            var issue = await _context.Issues
+            var issueModel = await _context.Issues
                 .Include(issue => issue.IssueComments)
                 .FirstOrDefaultAsync(issue => issue.Id == command.IssueId);
-            issue.AddComment(command.Text, command.UserId);
+            issueModel.AddComment(command.Text, command.UserId);
             await _context.SaveChangesAsync();
         }
     }

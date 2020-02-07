@@ -1,19 +1,46 @@
 .login-container {
-  width: 600px;
+  width: 100%;
   text-align: center;
   position: relative;
-  height: 600px;
-  margin: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(0%, 50%);
 
   .form {
-    margin: 0;
     height: 100%;
-    top: 50%;
-    transform: translate(0%, 50%);
+    top: 30%;
+    transform: translate(0%, 30%);
 
-    .input-container {}
+    .form-container{
+      border: 1px solid #dddddd;
+      width: 400px;
+      text-align: center;
+      position: relative;
+      left: 40%;
+      transform: translate(0%, 30%);
+
+      .button{
+        margin: 15px;
+        padding: 10px 25px 10px 25px;
+        background-color: #15d85f;
+        border: 0;
+        border-radius: 25px;
+        font-size: 24px;
+      }
+    }
+    .input-container {
+      .input-label{
+        font-size: 24px;
+        text-align: left;
+      }
+      .input-placeholder{
+        border-radius: 0;
+        margin: 5px;
+        input{
+          border-radius: 0;
+          border-color: #dddddd;
+          border: white;
+          border-bottom: 2px solid black;
+          padding: 5px;
+        }
+      }
+    }
   }
 }

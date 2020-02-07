@@ -1,0 +1,24 @@
+.issue-item {
+  height: 80px;
+  width: 400px;
+  background-color: #dddddd;
+  border: 0;
+  border-radius: 25px;
+  margin: 5px;
+
+  .issue-box {
+    padding: 15px;
+
+    .issue-header {
+      .issue-title{
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .issue-number{
+        font-size: 12px;
+        color: #ffffff;
+        padding-left: 20px;
+      }
+    }
+  }
+}
