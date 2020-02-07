@@ -26,11 +26,12 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release
   build-front:
-      with:
-        node-version: '10.x'
     - uses: actions/checkout@v1
     - name: Setup .Angular
-      uses: actions/setup-dotnet@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    
     - run: cd .\MOBoard\
     - run: npm install
     - run: npm install -g @angular/cli
