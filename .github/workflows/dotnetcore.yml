@@ -37,7 +37,7 @@ jobs:
         node-version: 12.x
 
     - name: Move to angular directory
-      run: cd MOBoard\
+      run: cd ./MOBoard/ClientApp
     - name: list dir
       run: ls  
     - name: Run NPM install
