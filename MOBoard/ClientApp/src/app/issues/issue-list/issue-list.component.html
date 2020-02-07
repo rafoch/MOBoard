@@ -1,6 +1,13 @@
 <div>
-  Issue List:
-  <div *ngFor="let issue of list">
+  <div class="list-header">
+    <div class="search">
+      <span class="search-box">
+        {{'issue.search' | translate }}
+      </span>
+      <input type="text" class="search" />
+    </div>
+  </div>
+  <div *ngFor="let issue of list | async">
     <app-issue-list-item [issue]="issue"></app-issue-list-item>
   </div>
 </div>

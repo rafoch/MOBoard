@@ -28,6 +28,7 @@ using MOBoard.Read.Project.DataAccess;
 using MOBoard.Web.ContractorsFilters.V1.Auth;
 using MOBoard.Write.Project.DataAccess;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -47,7 +48,11 @@ namespace MOBoard.Web
         {
             services.AddMvc(
                 options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Latest)
-                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+                .AddNewtonsoftJson(opt =>
+                {
+                    opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    opt.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
             var tokenValidationParameters = TokenValidationParametersProvider.Get();
 
             services.AddSingleton(tokenValidationParameters);

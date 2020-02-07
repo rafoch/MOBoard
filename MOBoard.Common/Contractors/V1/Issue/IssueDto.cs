@@ -8,6 +8,9 @@ namespace MOBoard.Common.Contractors.V1.Issue
     public class IssueDto
     {
         public string Name { get; set; }
+        public string Description { get; set; }
+        public string Reproduction { get; set; }
+        public string AcceptanceTests { get; set; }
         public DateTime CreatedAt { get; set; }
         public Guid CreatorUserId { get; set; }
         public DateTime ModifiedAt { get; set; }

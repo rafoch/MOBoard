@@ -4,7 +4,8 @@
       <span class="issue-priority">{{issue.priority}}</span>
       <span class="issue-title">{{issue.name}}</span>
       <span class="issue-number">{{issue.issueFullNumber}}</span>
+      <span class="issue-date">{{issue.createdAt | date: 'yyyy-MM-dd HH:mm'}}</span>
     </div>
-    <span class="issue-description">{{issue.createdAt | date: 'yyyy-MM-dd HH:mm'}}</span>
+    <span class="issue-description">{{issue.description | truncate:40}}</span>
   </div>
 </div>

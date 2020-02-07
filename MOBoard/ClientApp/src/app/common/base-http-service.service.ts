@@ -31,7 +31,7 @@ export class AuthService {
 		}
 		return _observableOf(false);
 	}
-	login(loginRequest: LoginRequest): Observable<LoginResponse> {
+	async login(loginRequest: LoginRequest): Promise<Observable<LoginResponse>> {
 		let url = this.baseUrl + '/oauth/login';
 		if (loginRequest.username === undefined || loginRequest.password === undefined) {
 			let loginResponse: LoginResponse = {
@@ -98,13 +98,13 @@ export class IssueService {
 	) {
 		this.http = http;
 		this.baseUrl = baseUrl ? baseUrl : 'https://localhost:44300/api/v1/issue';
-  }
-  login(projectId : string): Observable<IssueDto[]> {
+	}
+	login(projectId: string): Observable<IssueDto[]> {
 		let url = this.baseUrl + '/all?projectId=';
 		if (projectId === '') {
 			return new Observable(<any>null);
-    }
-    url += projectId;
+		}
+		url += projectId;
 		return this.http
 			.request('get', url)
 			.pipe(
@@ -128,39 +128,34 @@ export class IssueService {
 	}
 
 	processLoginRequest(response: any): Observable<IssueDto[]> {
-			return _observableOf(response as IssueDto[]);
+		return _observableOf(response as IssueDto[]);
 	}
 }
 
-export enum IssuePriorityLevel {
-  _0 = 0,
-  _1 = 1,
-  _2 = 2,
-  _3 = 3,
-  _4 = 4,
-}
-
 export interface IssueCommentDto {
-  createdAt?: Date;
-  creatorId?: string;
-  text?: string | undefined;
+	createdAt?: Date;
+	creatorId?: string;
+	text?: string | undefined;
 }
 export interface IssueHistoryDto {
-  createdAt?: Date;
-  changeUserId?: string;
-  actionType?: string | undefined;
+	createdAt?: Date;
+	changeUserId?: string;
+	actionType?: string | undefined;
 }
 export interface IssueDto {
-  name?: string | undefined;
-    createdAt?: Date;
-    creatorUserId?: string;
-    modifiedAt?: Date;
-    issueHistories?: IssueHistoryDto[] | undefined;
-    issueNumber?: number;
-    issueFullNumber?: string | undefined;
-    issueComments?: IssueCommentDto[] | undefined;
-    loggedTime?: number;
-    priority?: IssuePriorityLevel;
+	name?: string | undefined;
+	description?: string | undefined;
+	acceptanceTests?: string | undefined;
+	reproduction?: string | undefined;
+	createdAt?: Date;
+	creatorUserId?: string;
+	modifiedAt?: Date;
+	issueHistories?: IssueHistoryDto[] | undefined;
+	issueNumber?: number;
+	issueFullNumber?: string | undefined;
+	issueComments?: IssueCommentDto[] | undefined;
+	loggedTime?: number;
+	priority?: string | undefined;
 }
 
 export interface LoginRequest {

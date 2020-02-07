@@ -8,7 +8,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	public password: string = 'zaq1@WSX';
 	public response: LoginResponse;
 	private _authService: AuthService;
-	constructor(private authService: AuthService, private _router : Router) {
+	constructor(private authService: AuthService, private _router: Router) {
 		this._authService = authService;
 	}
 
@@ -16,13 +16,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy(): void {}
 
-	authorize() {
+	async authorize() {
 		let loginRequest: LoginRequest = {
 			username: this.login,
 			password: this.password
 		};
-    this._authService.login(loginRequest).subscribe((response) => (this.response = response));
-    this._router.navigate(['/issues']);
+		await (await this._authService.login(loginRequest)).subscribe((response) => (this.response = response));
+		this._router.navigateByUrl('/issues');
 	}
 
 	isAuthorized() {
