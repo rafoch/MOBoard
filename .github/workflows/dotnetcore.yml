@@ -36,10 +36,9 @@ jobs:
       with:
         node-version: 12.x
 
-    - name: Move to angular directory
+    - name: Build Angular project on prod
       run: |
         cd ./MOBoard/ClientApp
-        ls  
         npm install
         npm install -g @angular/cli
         ng build --prod

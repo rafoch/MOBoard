@@ -7,7 +7,9 @@
       <input type="text" class="search" />
     </div>
   </div>
-  <div *ngFor="let issue of list | async">
-    <app-issue-list-item [issue]="issue"></app-issue-list-item>
+  <div class="list">
+    <div *ngFor="let issue of list | async">
+      <app-issue-list-item [issue]="issue"></app-issue-list-item>
+    </div>
   </div>
 </div>

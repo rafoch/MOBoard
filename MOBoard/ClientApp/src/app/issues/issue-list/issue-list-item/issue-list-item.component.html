@@ -1,10 +1,10 @@
 <div class="issue-item">
   <div class="issue-box">
     <div class="issue-header">
-      <span class="issue-priority">{{issue.priority}}</span>
-      <span class="issue-title">{{issue.name}}</span>
-      <span class="issue-number">{{issue.issueFullNumber}}</span>
-      <span class="issue-date">{{issue.createdAt | date: 'yyyy-MM-dd HH:mm'}}</span>
+      <div class="issue-priority">{{issue.priority}}</div>
+      <div class="issue-title">{{issue.name}}</div>
+      <div class="issue-number">{{issue.issueFullNumber}}</div>
+      <div class="issue-date">{{issue.createdAt | date: 'yyyy-MM-dd HH:mm'}}</div>
     </div>
     <span class="issue-description">{{issue.description | truncate:40}}</span>
   </div>

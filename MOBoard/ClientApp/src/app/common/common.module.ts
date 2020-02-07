@@ -9,22 +9,13 @@ import { HttpClient } from '@angular/common/http';
 import { TruncatePipe } from './pipes/pipes-declarations';
 
 @NgModule({
+	exports: [ TranslateModule ]
+})
+export class TranslationModule {}
+@NgModule({
 	declarations: [ NavButtonComponent, TooltipDirective, TruncatePipe ],
-	imports: [
-		AngularFontAwesomeModule,
-		TranslateModule.forRoot({
-			loader: {
-				provide: TranslateLoader,
-				useFactory: HttpLoaderFactory,
-				deps: [ HttpClient ]
-			}
-		})
-	],
-	exports: [ NavButtonComponent, TranslateModule, TruncatePipe ],
+	imports: [ AngularFontAwesomeModule, TranslationModule ],
+	exports: [ NavButtonComponent, TruncatePipe ],
 	providers: [ AuthGuardService ]
 })
 export class CommonComponentsModule {}
-
-export function HttpLoaderFactory(http: HttpClient) {
-	return new TranslateHttpLoader(http);
-}

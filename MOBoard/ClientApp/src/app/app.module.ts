@@ -11,6 +11,8 @@ import { CommonComponentsModule } from './common/common.module';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 @NgModule({
 	declarations: [ AppComponent, NavbarComponent, ChangeLangComponent, LandingComponent, LoginComponent ],
@@ -18,9 +20,15 @@ import { FormsModule } from '@angular/forms';
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
-		HttpClientModule,
 		CommonComponentsModule,
-		FormsModule
+		FormsModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [ HttpClient ]
+			}
+		})
 	],
 	providers: [
 		{
@@ -36,3 +44,7 @@ import { FormsModule } from '@angular/forms';
 	bootstrap: [ AppComponent ]
 })
 export class AppModule {}
+
+export function HttpLoaderFactory(http: HttpClient) {
+	return new TranslateHttpLoader(http);
+}

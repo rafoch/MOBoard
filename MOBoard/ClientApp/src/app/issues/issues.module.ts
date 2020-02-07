@@ -6,7 +6,7 @@ import { AuthGuardService } from '../common/auth-guard.service';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssueListItemComponent } from './issue-list/issue-list-item/issue-list-item.component';
 import { CommonModule } from '@angular/common';
-import { CommonComponentsModule } from '../common/common.module';
+import { CommonComponentsModule, TranslationModule } from '../common/common.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
@@ -22,18 +22,7 @@ const routes: Routes = [
 
 @NgModule({
 	declarations: [ IssuesComponent, IssueListComponent, IssueListItemComponent ],
-	imports: [
-		CommonModule,
-		RouterModule.forChild(routes),
-		CommonComponentsModule,
-		TranslateModule.forRoot({
-			loader: {
-				provide: TranslateLoader,
-				useFactory: HttpLoaderFactory,
-				deps: [ HttpClient ]
-			}
-		})
-	],
+	imports: [ CommonModule, RouterModule.forChild(routes), CommonComponentsModule, TranslationModule ],
 	exports: [ RouterModule, TranslateModule ],
 	providers: [
 		{
@@ -43,7 +32,3 @@ const routes: Routes = [
 	]
 })
 export class IssuesModule {}
-
-export function HttpLoaderFactory(http: HttpClient) {
-	return new TranslateHttpLoader(http);
-}
