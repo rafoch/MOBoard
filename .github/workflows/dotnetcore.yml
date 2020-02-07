@@ -37,7 +37,10 @@ jobs:
         node-version: 12.x
 
     - name: Run NPM
-    - run: cd .\MOBoard\
-    - run: npm install
-    - run: npm install -g @angular/cli
+      run: cd .\MOBoard\
+    - name: Run NPM
+      run: npm install
+    - name: Run NPM
+      run: npm install -g @angular/cli
+    - name: Run NPM
       run: ng build --prod
