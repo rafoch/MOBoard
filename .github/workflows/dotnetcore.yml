@@ -26,13 +26,17 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release
   build-front:
-    - uses: actions/checkout@v1
-    - name: Setup .Angular
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
+
+    runs-on: ubuntu-latest
     
-    - run: cd .\MOBoard\
-    - run: npm install
-    - run: npm install -g @angular/cli
-    - run: ng build --prod
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup .Angular
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+    
+      - run: cd .\MOBoard\
+      - run: npm install
+      - run: npm install -g @angular/cli
+      - run: ng build --prod
