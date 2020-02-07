@@ -37,12 +37,9 @@ jobs:
         node-version: 12.x
 
     - name: Move to angular directory
-      run: cd ./MOBoard/ClientApp
-    - name: list dir
-      run: ls  
-    - name: Run NPM install
-      run: npm install
-    - name: Install angular cli
-      run: npm install -g @angular/cli
-    - name: Run ng build on production type
-      run: ng build --prod
+      run: |
+        cd ./MOBoard/ClientApp
+        ls  
+        npm install
+        npm install -g @angular/cli
+        ng build --prod
