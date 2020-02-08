@@ -79,5 +79,12 @@ namespace MOBoard.Web.Controllers.V1.Project
             var projectPersons = await QueryAsync(new GetUsernamesForProjectUsersQuery(queryAsync));
             return Collection(projectPersons);
         }
+
+        [HttpGet(ApiRoutes.Project.MyProjects)]
+        public async Task<IActionResult> GetProjectsForLoggedUser()
+        {
+            var queryAsync = await AuthorizedQueryAsync(new GetProjectsByUserIdQuery());
+            return Collection(queryAsync);
+        }
     }
 }

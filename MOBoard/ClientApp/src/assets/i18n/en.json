@@ -9,9 +9,11 @@
   },
   "iconTooltips": {
     "plus": "Add",
-    "search": "Search"
+    "search": "Search",
+    "tasks": "Tasks"
   },
   "issue": {
-    "search": "Search"
+    "search": "Search",
+    "selectProject": "Selected project"
   }
 }

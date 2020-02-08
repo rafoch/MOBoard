@@ -2,6 +2,7 @@ import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpResponseBase, HttpResponse } from '@angular/common/http';
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export const BASE_URL = new InjectionToken<string>('BASE_URL');
 
@@ -19,11 +20,19 @@ export class AuthService {
 		@Inject(HttpClient) http: HttpClient,
 		@Optional()
 		@Inject(BASE_URL)
-		baseUrl?: string
+		baseUrl?: string,
+		private router?: Router
 	) {
 		this.http = http;
 		this.baseUrl = baseUrl ? baseUrl : 'https://localhost:44300/api/v1';
 	}
+
+	logout() {
+		localStorage.removeItem('token');
+		localStorage.removeItem('refresh-token');
+		this.router.navigate([ '/login' ]);
+	}
+
 	isAuthorized(): Observable<boolean> {
 		let token = localStorage.getItem('token');
 		if (token !== undefined && token !== '' && token !== null) {
@@ -78,6 +87,7 @@ export class AuthService {
 				isSuccess: true,
 				errors: []
 			};
+			this.router.navigate([ '/issues' ]);
 			return _observableOf(loginResponse);
 		}
 
@@ -130,6 +140,56 @@ export class IssueService {
 	processLoginRequest(response: any): Observable<IssueDto[]> {
 		return _observableOf(response as IssueDto[]);
 	}
+}
+
+@Injectable()
+export class ProjectService {
+	private http: HttpClient;
+	private baseUrl: string;
+
+	constructor(
+		@Inject(HttpClient) http: HttpClient,
+		@Optional()
+		@Inject(BASE_URL)
+		baseUrl?: string
+	) {
+		this.http = http;
+		this.baseUrl = baseUrl ? baseUrl : 'https://localhost:44300/api/v1/project';
+	}
+	my(): Observable<GetProjectForUserResponse[]> {
+		let url = this.baseUrl + '/my';
+		return this.http
+			.request('get', url)
+			.pipe(
+				_observableMergeMap((response: any) => {
+					return this.processMyRequest(response);
+				})
+			)
+			.pipe(
+				_observableCatch((response: any) => {
+					if (response instanceof HttpResponseBase) {
+						try {
+							return this.processMyRequest(<any>response);
+						} catch (e) {
+							return <Observable<GetProjectForUserResponse[]>>(<any>_observableThrow(e));
+						}
+					} else {
+						return <Observable<GetProjectForUserResponse[]>>(<any>_observableThrow(response));
+					}
+				})
+			);
+	}
+
+	processMyRequest(response: any): Observable<GetProjectForUserResponse[]> {
+		return _observableOf(response as GetProjectForUserResponse[]);
+	}
+}
+
+export interface GetProjectForUserResponse {
+	name?: string | undefined;
+	description?: string | undefined;
+	id?: string | undefined;
+	alias?: string | undefined;
 }
 
 export interface IssueCommentDto {

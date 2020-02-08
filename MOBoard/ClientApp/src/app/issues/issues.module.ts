@@ -24,11 +24,6 @@ const routes: Routes = [
 	declarations: [ IssuesComponent, IssueListComponent, IssueListItemComponent ],
 	imports: [ CommonModule, RouterModule.forChild(routes), CommonComponentsModule, TranslationModule ],
 	exports: [ RouterModule, TranslateModule ],
-	providers: [
-		{
-			provide: IssueService,
-			useClass: IssueService
-		}
-	]
+	providers: []
 })
 export class IssuesModule {}

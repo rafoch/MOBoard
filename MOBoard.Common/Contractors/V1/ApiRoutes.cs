@@ -45,6 +45,7 @@
             public const string AddPerson = ProjectBase + "{id}/user/add";
             public const string RemovePerson = ProjectBase + "{id}/user/remove/{userId}";
             public const string GetPersons = ProjectBase + "{id}/users";
+            public const string MyProjects = ProjectBase + "my";
         }
 
         public static class User

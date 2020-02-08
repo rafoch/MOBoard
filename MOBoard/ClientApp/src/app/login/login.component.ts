@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 			password: this.password
 		};
 		await (await this._authService.login(loginRequest)).subscribe((response) => (this.response = response));
-		this._router.navigateByUrl('/issues');
 	}
 
 	isAuthorized() {

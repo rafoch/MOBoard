@@ -1,6 +1,7 @@
 $navWidth : 200px;
 
 .module-nav {
+  color: #ffffff;
   width: 100%;
   height: 100%;
 
@@ -16,6 +17,36 @@ $navWidth : 200px;
 
   .header {
     text-align: center;
+
+    .project-select {
+      margin-top: 40px;
+      height: 40px;
+
+    }
+
+    .body-popup {
+      background-color: #000;
+      position: relative;
+      z-index: 2;
+
+      .project-container {
+        height: 40px;
+
+        .project {
+          top: 25%;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          position: relative;
+        }
+
+        .alias {
+          float: right;
+          margin-right: 20px;
+        }
+      }
+    }
+
 
   }
 

@@ -1,0 +1,8 @@
+<div class="box">
+  <div class="selected" (click)="toggleDisplay()">
+    <ng-content select="[header]"></ng-content>
+  </div>
+  <div class="list" [hidden]="!isShow">
+    <ng-content select="[body]"></ng-content>
+  </div>
+</div>

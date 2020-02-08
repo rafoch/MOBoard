@@ -1,6 +1,12 @@
-import { IssueService, IssueDto } from './../common/base-http-service.service';
-import { Component, OnInit } from '@angular/core';
+import {
+	IssueService,
+	IssueDto,
+	ProjectService,
+	GetProjectForUserResponse
+} from './../common/base-http-service.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { SearchSelectComponent } from '../common/search-select/search-select.component';
 
 @Component({
 	selector: 'app-issues',
@@ -9,9 +15,24 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class IssuesComponent implements OnInit {
 	public issueList: Observable<IssueDto[]>;
-	constructor(private _issueService: IssueService) {}
+	public projects: Observable<GetProjectForUserResponse[]>;
+	private oldId: string;
+	@ViewChild(SearchSelectComponent, { static: true })
+	child: SearchSelectComponent;
+	closeChild: boolean;
+	constructor(private _issueService: IssueService, private _projectService: ProjectService) {}
 
 	ngOnInit() {
-		this.issueList = this._issueService.login('DAC021E9-DA59-4268-4B84-08D7A113077C');
+		this.projects = this._projectService.my();
+	}
+
+	selectProject(id: string) {
+		this.child.toggleDisplay();
+		if (this.oldId === id) {
+			return;
+		}
+		this.oldId = id;
+		this.issueList = this._issueService.login(id);
+		this.closeChild = true;
 	}
 }

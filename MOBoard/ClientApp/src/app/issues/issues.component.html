@@ -1,7 +1,25 @@
 <div class="module-nav">
   <div class="module-navigation">
     <div class="header">
-      <div class="projectName">project name</div>
+      <div class="project-select">
+        <app-search-select [close]="closeChild">
+          <div header>
+            <div class="header">{{'issue.selectProject' | translate}}</div>
+          </div>
+          <div body>
+            <div class="body-popup">
+              <div class="options" *ngFor="let project of projects | async">
+                <div class="project-container" (click)="selectProject(project.id)">
+                  <div class="project">
+                    <span class="name">{{project.name}}</span>
+                    <span class="alias">{{project.alias}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </app-search-select>
+      </div>
       <div class="actions">
         <div class="search">Search</div>
         <div class="search">Search</div>

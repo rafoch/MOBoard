@@ -13,6 +13,10 @@ export class NavbarComponent implements OnInit {
 	}
 	ngOnInit() {}
 
+	logout() {
+		this._authService.logout();
+	}
+
 	isAuthorized(): boolean {
 		let isUserAuthorized = false;
 		this._authService.isAuthorized().subscribe((authorized) => (isUserAuthorized = authorized));
