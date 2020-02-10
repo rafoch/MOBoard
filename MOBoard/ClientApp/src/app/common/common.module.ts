@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { TruncatePipe } from './pipes/pipes-declarations';
 import { SearchSelectComponent } from './search-select/search-select.component';
 import { IssueService, ProjectService } from './base-http-service.service';
+import { ModalComponent } from './modal/modal.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
 	exports: [ TranslateModule ],
@@ -16,9 +18,9 @@ import { IssueService, ProjectService } from './base-http-service.service';
 })
 export class TranslationModule {}
 @NgModule({
-	declarations: [ NavButtonComponent, TooltipDirective, TruncatePipe, SearchSelectComponent ],
-	imports: [ AngularFontAwesomeModule, TranslationModule ],
-	exports: [ NavButtonComponent, TruncatePipe, SearchSelectComponent ],
+	declarations: [ NavButtonComponent, TooltipDirective, TruncatePipe, SearchSelectComponent, ModalComponent ],
+	imports: [ AngularFontAwesomeModule, TranslationModule, FormsModule ],
+	exports: [ NavButtonComponent, TruncatePipe, SearchSelectComponent, ModalComponent ],
 	providers: [
 		AuthGuardService,
 		{

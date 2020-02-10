@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../common/base-http-service.service';
+import { ModalComponent } from '../common/modal/modal.component';
+import { AddProjectModalComponent } from '../add-project-modal/add-project-modal.component';
 
 @Component({
 	selector: 'app-navbar',
@@ -7,6 +9,8 @@ import { AuthService } from '../common/base-http-service.service';
 	styleUrls: [ './navbar.component.scss' ]
 })
 export class NavbarComponent implements OnInit {
+	@ViewChild(AddProjectModalComponent, { static: false })
+	private dialog: AddProjectModalComponent;
 	private _authService: AuthService;
 	constructor(private authService: AuthService) {
 		this._authService = authService;
@@ -21,5 +25,9 @@ export class NavbarComponent implements OnInit {
 		let isUserAuthorized = false;
 		this._authService.isAuthorized().subscribe((authorized) => (isUserAuthorized = authorized));
 		return isUserAuthorized;
+	}
+
+	createNew() {
+		this.dialog.open();
 	}
 }

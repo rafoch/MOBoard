@@ -10,17 +10,26 @@ import { ChangeLangComponent } from './navbar/change-lang/change-lang.component'
 import { CommonComponentsModule } from './common/common.module';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { AddProjectModalComponent } from './add-project-modal/add-project-modal.component';
 
 @NgModule({
-	declarations: [ AppComponent, NavbarComponent, ChangeLangComponent, LandingComponent, LoginComponent ],
+	declarations: [
+		AppComponent,
+		NavbarComponent,
+		ChangeLangComponent,
+		LandingComponent,
+		LoginComponent,
+		AddProjectModalComponent
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
 		CommonComponentsModule,
+		ReactiveFormsModule,
 		FormsModule,
 		TranslateModule.forRoot({
 			loader: {

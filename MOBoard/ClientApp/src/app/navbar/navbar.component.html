@@ -8,6 +8,9 @@
         <div class="button search">
           <app-nav-button [icon]="'search'"></app-nav-button>
         </div>
+        <div class="button plus" (click)="createNew()">
+          <app-nav-button [icon]="'plus'"></app-nav-button>
+        </div>
         <div class="button logout" (click)="logout()">
           <app-nav-button [icon]="'sign-out'"></app-nav-button>
         </div>
@@ -21,6 +24,7 @@
     <app-change-lang></app-change-lang>
   </div>
   <div class="container">
+    <app-add-project-modal></app-add-project-modal>
 
     <router-outlet></router-outlet>
   </div>

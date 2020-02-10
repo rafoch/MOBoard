@@ -1,0 +1,16 @@
+<app-modal id="modal_1">
+  <div header>{{'project.add' | translate}}</div>
+  <div body>
+    <div class="formModal">
+      <div class="form">
+        <form [formGroup]="newProjectForm" (ngSubmit)="submitForm()">
+          <div class="form-group">
+            <label for="name" class="name">{{'project.name' | translate}}:</label>
+            <input type="text" class="name-input" required>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</app-modal>

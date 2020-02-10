@@ -1,0 +1,18 @@
+<div class="mmodal" [hidden]="!shouldShow">
+  <div class="mmodal-body">
+    <div class="title">
+      <ng-content select="[header]"></ng-content>
+    </div>
+    <ng-content select="[body]"></ng-content>
+    <div class="footer">
+      <div class="buttons">
+        <div class="close">
+          <button (click)="close()">Zamknij</button>
+        </div>
+        <div class="add"><button>Create</button></div>
+      </div>
+    </div>
+    <ng-content select="[footer]"></ng-content>
+  </div>
+  <div class="mmodal-background"></div>
+</div>

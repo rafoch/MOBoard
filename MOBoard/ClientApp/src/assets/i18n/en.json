@@ -15,5 +15,9 @@
   "issue": {
     "search": "Search",
     "selectProject": "Selected project"
+  },
+  "project": {
+    "add": "Add new project",
+    "name": "Project name"
   }
 }

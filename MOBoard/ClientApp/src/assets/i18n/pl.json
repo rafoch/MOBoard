@@ -15,5 +15,9 @@
   "issue": {
     "search": "Szukaj",
     "selectProject": "Wybrany projekt"
+  },
+  "project": {
+    "add": "Dodaj nowy projekt",
+    "name": "Nazwa projektu"
   }
 }
