@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../common/modal/modal.component';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ProjectService } from '../common/base-http-service.service';
+import { ProjectService, CreateProjectRequest } from '../common/base-http-service.service';
 
 @Component({
 	selector: 'app-add-project-modal',

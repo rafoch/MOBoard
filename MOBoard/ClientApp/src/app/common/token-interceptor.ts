@@ -16,9 +16,10 @@ export class TokenInterceptor implements HttpInterceptor {
 		});
 		return next.handle(cloneReq).pipe(
 			tap((ev: HttpEvent<any>) => {}),
-			catchError(() => {
+			catchError((err: any) => {
 				this.authService.logout();
 				this.router.navigate([ '/login' ]);
+				return Observable.throw(err);
 			})
 		);
 	}
