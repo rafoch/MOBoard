@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../common/modal/modal.component';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ProjectService } from '../common/base-http-service.service';
 
 @Component({
 	selector: 'app-add-project-modal',
@@ -13,9 +14,11 @@ export class AddProjectModalComponent implements OnInit {
 
 	newProjectForm: FormGroup;
 
-	constructor(fb: FormBuilder) {
+	constructor(fb: FormBuilder, private projectService: ProjectService) {
 		this.newProjectForm = fb.group({
-			name: [ '', Validators.required ]
+			name: [ '', Validators.required ],
+			alias: [ '', Validators.required ],
+			description: [ '' ]
 		});
 	}
 
@@ -25,5 +28,16 @@ export class AddProjectModalComponent implements OnInit {
 		this.dialog.open();
 	}
 
-	submitForm() {}
+	close() {
+		this.dialog.close();
+	}
+	submitForm() {
+		let body: CreateProjectRequest = {
+			name: this.newProjectForm.value.name,
+			alias: this.newProjectForm.value.alias,
+			description: this.newProjectForm.value.description
+		};
+		this.projectService.create(body).subscribe((test) => console.log('tag', ''));
+		this.close();
+	}
 }

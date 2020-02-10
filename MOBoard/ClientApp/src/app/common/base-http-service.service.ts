@@ -183,6 +183,43 @@ export class ProjectService {
 	processMyRequest(response: any): Observable<GetProjectForUserResponse[]> {
 		return _observableOf(response as GetProjectForUserResponse[]);
 	}
+
+	create(createProjectRequest: CreateProjectRequest) {
+		let url = this.baseUrl + '/create';
+		let options: any = {
+			body: createProjectRequest
+		};
+		return this.http
+			.request('post', url, options)
+			.pipe(
+				_observableMergeMap((response: any) => {
+					return this.processCreateRequest(response);
+				})
+			)
+			.pipe(
+				_observableCatch((response: any) => {
+					if (response instanceof HttpResponseBase) {
+						try {
+							return this.processMyRequest(<any>response);
+						} catch (e) {
+							return;
+						}
+					} else {
+						return;
+					}
+				})
+			);
+	}
+
+	processCreateRequest(response: any): Observable<any> {
+		return _observableOf(response);
+	}
+}
+
+export interface CreateProjectRequest {
+	name?: string | undefined;
+	alias?: string | undefined;
+	description?: string | undefined;
 }
 
 export interface GetProjectForUserResponse {

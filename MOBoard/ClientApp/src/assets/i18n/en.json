@@ -18,6 +18,8 @@
   },
   "project": {
     "add": "Add new project",
-    "name": "Project name"
+    "name": "Project name",
+    "alias": "Project alias",
+    "description": "Project description"
   }
 }

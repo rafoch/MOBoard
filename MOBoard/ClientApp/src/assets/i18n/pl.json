@@ -18,6 +18,8 @@
   },
   "project": {
     "add": "Dodaj nowy projekt",
-    "name": "Nazwa projektu"
+    "name": "Nazwa projektu",
+    "alias": "Alias projektu",
+    "description": "Opis projektu"
   }
 }
