@@ -1,10 +1,14 @@
-<div>
+<div class="issue-list">
+  <app-add-issue-modal (test)="onTest($event)"></app-add-issue-modal>
   <div class="list-header">
     <div class="search">
       <span class="search-box">
         {{'issue.search' | translate }}
       </span>
       <input type="text" class="search" />
+    </div>
+    <div class="add-issue">
+      <button (click)="createNew()">ADD</button>
     </div>
   </div>
   <div class="list">

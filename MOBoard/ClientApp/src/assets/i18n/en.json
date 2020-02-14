@@ -14,7 +14,14 @@
   },
   "issue": {
     "search": "Search",
-    "selectProject": "Selected project"
+    "selectProject": "Selected project",
+    "add": "Add new Issue",
+    "name": "Issue name",
+    "description": "Issue description",
+    "reproduction": "Issue reproduction",
+    "acceptanceTests": "Issue acceptance tests",
+    "priority": "Priority"
+
   },
   "project": {
     "add": "Add new project",

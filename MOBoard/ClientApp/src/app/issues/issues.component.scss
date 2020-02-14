@@ -32,6 +32,27 @@ $navWidth : 200px;
       .project-container {
         height: 40px;
 
+        background-color: black;
+
+        .project {
+          top: 25%;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          position: relative;
+        }
+
+        .alias {
+          float: right;
+          margin-right: 20px;
+        }
+      }
+
+      .project-container-active {
+        height: 40px;
+
+        background-color: green;
+
         .project {
           top: 25%;
           margin: 0;

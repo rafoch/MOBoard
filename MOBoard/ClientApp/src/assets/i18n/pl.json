@@ -14,7 +14,13 @@
   },
   "issue": {
     "search": "Szukaj",
-    "selectProject": "Wybrany projekt"
+    "selectProject": "Wybrany projekt",
+    "add": "Dodaj zadanie",
+    "name": "Nazwa zadania",
+    "description": "Opis zadania",
+    "reproduction": "Reprodukcja",
+    "acceptanceTests": "Testy akceptacyjne",
+    "priority": "Priorytet"
   },
   "project": {
     "add": "Dodaj nowy projekt",

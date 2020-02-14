@@ -1,0 +1,39 @@
+<app-modal id="modal_1">
+  <div header>{{'issue.add' | translate}}</div>
+  <div body>
+    <div class="formModal">
+      <div class="form">
+        <form [formGroup]="newIssueForm" (ngSubmit)="submitForm()">
+          <div class="form-group">
+            <label for="name" class="name">{{'issue.name' | translate}}:</label>
+            <input type="text" class="name-input" formControlName="name" required>
+          </div>
+          <div class="form-group">
+            <label for="name" class="name">{{'issue.priority' | translate}}:</label>
+            <input type="text" class="name-input" formControlName="priority" required>
+          </div>
+          <div class="form-group">
+            <label for="name" class="description">{{'issue.description' | translate}}:</label>
+            <textarea class="name-input" formControlName="description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="name" class="description">{{'issue.acceptanceTests' | translate}}:</label>
+            <textarea class="name-input" formControlName="acceptanceTests"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="name" class="reproduction">{{'issue.reproduction' | translate}}:</label>
+            <textarea class="name-input" formControlName="reproduction"></textarea>
+          </div>
+          <div class="footer">
+            <div class="buttons">
+              <div class="close">
+                <button (click)="close()">Zamknij</button>
+              </div>
+              <div class="add"><button type="submit">Create</button></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</app-modal>

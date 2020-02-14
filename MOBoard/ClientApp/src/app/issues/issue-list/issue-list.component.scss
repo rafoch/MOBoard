@@ -1,3 +1,10 @@
-.list {
-	// overflow-y: scroll;
+.issue-list {
+  color: black;
+  margin-left: 20px;
+  position: fixed;
+  margin-top: 20px;
+
+  .list {
+    // overflow-y: scroll;
+  }
 }

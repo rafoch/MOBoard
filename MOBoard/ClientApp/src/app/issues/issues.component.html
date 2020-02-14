@@ -9,7 +9,8 @@
           <div body>
             <div class="body-popup">
               <div class="options" *ngFor="let project of projects | async">
-                <div class="project-container" (click)="selectProject(project.id)">
+                <div [class]="project.id === oldId ? 'project-container-active' :  'project-container'"
+                  (click)="selectProject(project.id)">
                   <div class="project">
                     <span class="name">{{project.name}}</span>
                     <span class="alias">{{project.alias}}</span>
@@ -30,6 +31,6 @@
     </div>
   </div>
   <div class="issue-list">
-    <app-issue-list [list]="issueList"></app-issue-list>
+    <app-issue-list [list]="issueList" (emitter)="onEmitter($event)" [projectId]="oldId"></app-issue-list>
   </div>
 </div>
