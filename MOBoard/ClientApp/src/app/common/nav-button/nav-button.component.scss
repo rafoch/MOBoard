@@ -1,119 +1,135 @@
-.nav-button {
-  width: 50%;
-  height: 100%;
-  position: relative;
-  color: #ddd;
-  font-size: 18px;
+.item {
+  height: 24px !important;
+  padding: 5px 0px 5px 0px;
 
-  .icon {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    height: 100%;
-    left: 0%;
-    width: 100%;
-
-    fa {
-      top: 30%;
-      position: relative;
-    }
-  }
-
-  .tooltip {
-    background-color: rgba($color: #d3d3d3, $alpha: 0.3);
-    display: none;
+  .mat-list-icon {
+    color: rgba(235, 235, 235, 0.63);
   }
 
   &:hover {
-    .icon {
-      -moz-border-radius-topleft: 50px;
-      -moz-border-radius-topright: 50px;
-      -moz-border-radius-bottomright: 50px;
-      -moz-border-radius-bottomleft: 50px;
-      -webkit-border-radius: 50% 50% 50% 50%;
-      border-radius: 50% 50% 50% 50%;
-      background-color: rgba($color: #a8a8a8, $alpha: 0.5);
-    }
-
-    .tooltip {
-      display: flex;
-      top: 115%;
-      left: 65%;
-      position: absolute;
-      padding: 2px 2px 2px 2px;
-      z-index: 2;
-      background-color: rgba($color: #d3d3d3, $alpha: 1);
-    }
+    background-color: rgba(#1A1A1D, 0.397);
+    border-radius: 0px 50px 50px 0px;
+    width: 90%;
+    ;
   }
 }
 
-.tooltip-example {
-  text-align: center;
-  padding: 0 50px;
-}
+// .nav-button {
+//   width: 50%;
+//   height: 100%;
+//   position: relative;
+//   color: #ddd;
+//   font-size: 18px;
 
-.tooltip-example [tooltip] {
-  display: inline-block;
-  margin: 50px 20px;
-  width: 180px;
-  height: 50px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  line-height: 50px;
-  text-align: center;
-}
+//   .icon {
+//     position: absolute;
+//     top: 50%;
+//     transform: translate(0, -50%);
+//     height: 100%;
+//     left: 0%;
+//     width: 100%;
 
-.ng-tooltip {
-  position: absolute;
-  max-width: 150px;
-  font-size: 14px;
-  text-align: center;
-  color: #f8f8f2;
-  padding: 3px 8px;
-  background: #282a36;
-  border-radius: 4px;
-  z-index: 1000;
-  opacity: 0;
-}
+//     fa {
+//       top: 30%;
+//       position: relative;
+//     }
+//   }
 
-.ng-tooltip:after {
-  content: "";
-  position: absolute;
-  border-style: solid;
-}
+//   .tooltip {
+//     background-color: rgba($color: #d3d3d3, $alpha: 0.3);
+//     display: none;
+//   }
 
-.ng-tooltip-top:after {
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-color: black transparent transparent transparent;
-}
+//   &:hover {
+//     .icon {
+//       -moz-border-radius-topleft: 50px;
+//       -moz-border-radius-topright: 50px;
+//       -moz-border-radius-bottomright: 50px;
+//       -moz-border-radius-bottomleft: 50px;
+//       -webkit-border-radius: 50% 50% 50% 50%;
+//       border-radius: 50% 50% 50% 50%;
+//       background-color: rgba($color: #a8a8a8, $alpha: 0.5);
+//     }
 
-.ng-tooltip-bottom:after {
-  bottom: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-color: transparent transparent black transparent;
-}
+//     .tooltip {
+//       display: flex;
+//       top: 115%;
+//       left: 65%;
+//       position: absolute;
+//       padding: 2px 2px 2px 2px;
+//       z-index: 2;
+//       background-color: rgba($color: #d3d3d3, $alpha: 1);
+//     }
+//   }
+// }
 
-.ng-tooltip-left:after {
-  top: 50%;
-  left: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-color: transparent transparent transparent black;
-}
+// .tooltip-example {
+//   text-align: center;
+//   padding: 0 50px;
+// }
 
-.ng-tooltip-right:after {
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-color: transparent black transparent transparent;
-}
+// .tooltip-example [tooltip] {
+//   display: inline-block;
+//   margin: 50px 20px;
+//   width: 180px;
+//   height: 50px;
+//   border: 1px solid gray;
+//   border-radius: 5px;
+//   line-height: 50px;
+//   text-align: center;
+// }
 
-.ng-tooltip-show {
-  opacity: 1;
-}
+// .ng-tooltip {
+//   position: absolute;
+//   max-width: 150px;
+//   font-size: 14px;
+//   text-align: center;
+//   color: #f8f8f2;
+//   padding: 3px 8px;
+//   background: #282a36;
+//   border-radius: 4px;
+//   z-index: 1000;
+//   opacity: 0;
+// }
+
+// .ng-tooltip:after {
+//   content: "";
+//   position: absolute;
+//   border-style: solid;
+// }
+
+// .ng-tooltip-top:after {
+//   top: 100%;
+//   left: 50%;
+//   margin-left: -5px;
+//   border-width: 5px;
+//   border-color: black transparent transparent transparent;
+// }
+
+// .ng-tooltip-bottom:after {
+//   bottom: 100%;
+//   left: 50%;
+//   margin-left: -5px;
+//   border-width: 5px;
+//   border-color: transparent transparent black transparent;
+// }
+
+// .ng-tooltip-left:after {
+//   top: 50%;
+//   left: 100%;
+//   margin-top: -5px;
+//   border-width: 5px;
+//   border-color: transparent transparent transparent black;
+// }
+
+// .ng-tooltip-right:after {
+//   top: 50%;
+//   right: 100%;
+//   margin-top: -5px;
+//   border-width: 5px;
+//   border-color: transparent black transparent transparent;
+// }
+
+// .ng-tooltip-show {
+//   opacity: 1;
+// }

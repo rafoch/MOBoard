@@ -1,4 +1,18 @@
-<div class="issue-item">
+<mat-card class="issue-item">
+  <mat-card-title class="title">
+    <span class="issue-priority">{{issue.priority}}</span>
+    <span class="issue-title"> {{issue.name}} </span>
+    <span class="issue-number">{{issue.issueFullNumber}}</span>
+  </mat-card-title>
+  <mat-card-content>
+    <span class="issue-description">{{issue.description | truncate:40}}</span>
+  </mat-card-content>
+  <mat-card-footer>
+    <span class="issue-date">{{issue.createdAt | date: 'yyyy-MM-dd HH:mm'}}</span>
+  </mat-card-footer>
+</mat-card>
+
+<!-- <div class="issue-item">
   <div class="issue-box">
     <div class="issue-header">
       <div class="issue-priority">{{issue.priority}}</div>
@@ -8,4 +22,4 @@
     </div>
     <span class="issue-description">{{issue.description | truncate:40}}</span>
   </div>
-</div>
+</div> -->

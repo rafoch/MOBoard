@@ -8,9 +8,9 @@
     "login": "Login"
   },
   "iconTooltips": {
-    "plus": "Add",
+    "add": "add",
     "search": "Search",
-    "tasks": "Tasks"
+    "assignment": "Tasks"
   },
   "issue": {
     "search": "Search",

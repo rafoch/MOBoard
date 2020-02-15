@@ -1,41 +1,15 @@
-.nav {
+.example-container {
   height: 100%;
-  width: 100%;
-  position: relative;
+  background-color: #fff;
 
-  .nav-container {
-    height: 100%;
-    top: 0;
-    width: 90px;
-    left: 0;
-    position: fixed;
-    z-index: 1;
-    overflow-x: hidden;
-    background-color: rgba($color: #950740, $alpha: 1.0);
-    align-content: center;
-    box-shadow: 0px 0px 15px 1px #1A1A1D;
-
-    .buttons {
-      text-align: center;
-
-
-      .button {
-        height: 46px;
-        margin-bottom: 8px;
-        margin-top: 8px;
-        text-align: -webkit-center;
-      }
-    }
-
-    .nav-button {
-      height: 50px;
-
-    }
+  .nav {
+    width: 180px;
+    background-color: #950740;
   }
 
-  .container {
-    position: relative;
-    margin-left: 90px;
-    height: 100%;
+  .active {
+    background-color: rgba(#1A1A1D, 0.397);
+    border-radius: 0px 50px 50px 0px;
+    width: 90%;
   }
 }

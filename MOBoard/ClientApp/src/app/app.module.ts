@@ -19,6 +19,8 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { AddProjectModalComponent } from "./add-project-modal/add-project-modal.component";
 import { AddIssueModalComponent } from "./add-issue-modal/add-issue-modal.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material/material.module";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { AddIssueModalComponent } from "./add-issue-modal/add-issue-modal.compon
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MaterialModule,
     FormsModule,
     CommonComponentsModule,
     TranslateModule.forRoot({
@@ -42,7 +45,8 @@ import { AddIssueModalComponent } from "./add-issue-modal/add-issue-modal.compon
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     {

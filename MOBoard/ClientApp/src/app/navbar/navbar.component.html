@@ -1,4 +1,17 @@
-<div class="nav">
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened class="nav">
+    <mat-list>
+      <app-nav-button routerLink="/issues" routerLinkActive="active" [icon]="'assignment'"></app-nav-button>
+      <app-nav-button routerLinkActive="active" routerLink="/" [icon]="'add'"></app-nav-button>
+      <app-nav-button routerLinkActive="active" routerLink="/" [icon]="'add'"></app-nav-button>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<!-- <div class="nav">
   <div class="nav-container">
     <div class="buttons">
       <div class="authorized" [hidden]="!isAuthorized()">
@@ -28,4 +41,4 @@
 
     <router-outlet></router-outlet>
   </div>
-</div>
+</div> -->

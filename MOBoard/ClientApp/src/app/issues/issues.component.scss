@@ -1,78 +1,90 @@
-$navWidth : 200px;
-
-.module-nav {
-  color: #ffffff;
-  width: 100%;
+.example-container {
   height: 100%;
+  background-color: #fff;
 
-  .module-navigation {
-    width: $navWidth;
-    position: fixed;
+  .nav {
+    width: 180px;
     background-color: #4E4E50;
-    box-shadow: 0px 0px 15px 1px #1A1A1D;
-
-    height: 100%;
-
-  }
-
-  .header {
-    text-align: center;
-
-    .project-select {
-      margin-top: 40px;
-      height: 40px;
-
-    }
-
-    .body-popup {
-      background-color: #000;
-      position: relative;
-      z-index: 2;
-
-      .project-container {
-        height: 40px;
-
-        background-color: black;
-
-        .project {
-          top: 25%;
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          position: relative;
-        }
-
-        .alias {
-          float: right;
-          margin-right: 20px;
-        }
-      }
-
-      .project-container-active {
-        height: 40px;
-
-        background-color: green;
-
-        .project {
-          top: 25%;
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          position: relative;
-        }
-
-        .alias {
-          float: right;
-          margin-right: 20px;
-        }
-      }
-    }
-
-
-  }
-
-  .issue-list {
-    height: 100%;
-    margin-left: $navWidth;
   }
 }
+
+
+
+// $navWidth : 200px;
+
+// .module-nav {
+//   color: #ffffff;
+//   width: 100%;
+//   height: 100%;
+
+//   .module-navigation {
+//     width: $navWidth;
+//     position: fixed;
+//     background-color: #4E4E50;
+//     box-shadow: 0px 0px 15px 1px #1A1A1D;
+
+//     height: 100%;
+
+//   }
+
+//   .header {
+//     text-align: center;
+
+//     .project-select {
+//       margin-top: 40px;
+//       height: 40px;
+
+//     }
+
+//     .body-popup {
+//       background-color: #000;
+//       position: relative;
+//       z-index: 2;
+
+//       .project-container {
+//         height: 40px;
+
+//         background-color: black;
+
+//         .project {
+//           top: 25%;
+//           margin: 0;
+//           padding: 0;
+//           height: 100%;
+//           position: relative;
+//         }
+
+//         .alias {
+//           float: right;
+//           margin-right: 20px;
+//         }
+//       }
+
+//       .project-container-active {
+//         height: 40px;
+
+//         background-color: green;
+
+//         .project {
+//           top: 25%;
+//           margin: 0;
+//           padding: 0;
+//           height: 100%;
+//           position: relative;
+//         }
+
+//         .alias {
+//           float: right;
+//           margin-right: 20px;
+//         }
+//       }
+//     }
+
+
+//   }
+
+//   .issue-list {
+//     height: 100%;
+//     margin-left: $navWidth;
+//   }
+// }

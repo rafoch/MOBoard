@@ -1,4 +1,21 @@
-<div class="module-nav">
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened class="nav">
+    <mat-list>
+      <mat-list-item>
+
+      </mat-list-item>
+      <app-nav-button [icon]="'assignment'"></app-nav-button>
+      <app-nav-button [icon]="'add'"></app-nav-button>
+      <app-nav-button [icon]="'add'"></app-nav-button>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-issue-list [list]="issueList" (emitter)="onEmitter($event)" [projectId]="oldId"></app-issue-list>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+<!-- <div class="module-nav">
   <div class="module-navigation">
     <div class="header">
       <div class="project-select">
@@ -33,4 +50,4 @@
   <div class="issue-list">
     <app-issue-list [list]="issueList" (emitter)="onEmitter($event)" [projectId]="oldId"></app-issue-list>
   </div>
-</div>
+</div> -->

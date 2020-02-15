@@ -12,6 +12,7 @@ import { IssueService, ProjectService } from "./base-http-service.service";
 import { ModalComponent } from "./modal/modal.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { AddIssueModalComponent } from "../add-issue-modal/add-issue-modal.component";
+import { MaterialModule } from "../material/material.module";
 
 @NgModule({
   exports: [TranslateModule],
@@ -29,6 +30,7 @@ export class TranslationModule {}
   imports: [
     AngularFontAwesomeModule,
     TranslationModule,
+    MaterialModule,
     ReactiveFormsModule,
     FormsModule
   ],

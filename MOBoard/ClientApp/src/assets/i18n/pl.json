@@ -8,9 +8,9 @@
     "login": "Zaloguj"
   },
   "iconTooltips": {
-    "plus": "Dodaj",
+    "add": "Dodaj",
     "search": "Szukaj",
-    "tasks": "Zadania"
+    "assignment": "Zadania"
   },
   "issue": {
     "search": "Szukaj",

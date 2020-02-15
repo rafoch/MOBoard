@@ -1,4 +1,10 @@
-<div
+<mat-list-item class="item">
+  <mat-icon mat-list-icon>{{ icon }}</mat-icon>
+  <h4 mat-line>{{ 'iconTooltips.' + icon | translate }}</h4>
+</mat-list-item>
+
+
+<!-- <div
   class="nav-button"
   tooltip="{{ 'iconTooltips.' + icon | translate }}"
   placement="bottom"
@@ -7,4 +13,4 @@
   <div class="icon">
     <fa name="{{ icon }}"></fa>
   </div>
-</div>
+</div> -->

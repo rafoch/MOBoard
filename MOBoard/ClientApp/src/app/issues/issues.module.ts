@@ -15,7 +15,8 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-
+import { MaterialModule } from "../material/material.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 const routes: Routes = [
   {
     path: "",
@@ -35,6 +36,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MaterialModule,
     FormsModule,
     RouterModule.forChild(routes),
     CommonComponentsModule,
